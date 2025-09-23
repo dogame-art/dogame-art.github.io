@@ -9,7 +9,7 @@ on:
       - LICENSE
   workflow_dispatch:
   schedule:
-    - cron: '0 */3 * * *'  # Runs every 3 hours (UTC) - fixed the syntax
+    - cron: '0 */3 * * *'  # Fixed: was missing one asterisk
 jobs:
   continuous-delivery:
     runs-on: ubuntu-latest
@@ -19,23 +19,20 @@ jobs:
         with:
           fetch-depth: 0
           
-      # NEW: Debug - Check what files are actually there
-      - name: Debug - List files in repository
-        run: |
-          echo "Current directory:"
-          pwd
-          echo "Files in current directory:"
-          ls -la
-          echo "Looking for package.json specifically:"
-          find . -name "package.json" -type f
-          
-      # NEW: Setup Node.js for artwork generation
       - name: Setup Node.js for artwork generation
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           
-      # NEW: Generate artwork pages before main build
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4.2
+          bundler-cache: true
+          
+      - name: Build site with Ruby  
+        run: bundle exec ruby "./scaffold.rb"
+          
       - name: Generate artwork pages
         run: |
           echo "Installing npm dependencies..."
@@ -43,19 +40,8 @@ jobs:
           echo "Generating artwork pages..."
           npm run build
           echo "Artwork generation complete!"
-          echo "Files created:"
-          find . -name "WindowShopping" -type d
-          find . -name "gallery" -type d
-          echo "All directories in root:"
-          ls -la
+          echo "Checking _output folder:"
+          ls -la _output/ || echo "_output folder not found"
           
-      # Your existing Ruby setup
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.4.2
-          bundler-cache: true
-          
-      # Your existing deploy step
       - name: Deploy
         run: bash deploy.sh
