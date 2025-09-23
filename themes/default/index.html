@@ -75,5 +75,17 @@
     
     <!-- Font Awesome -->
     <script src="./fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+    
+    <!-- Weekday Detection for Snapshot Live Badge -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+        const isWeekday = today >= 1 && today <= 5; // Monday (1) through Friday (5)
+        
+        if (isWeekday) {
+            document.body.classList.add('weekday');
+        }
+    });
+    </script>
 </body>
 </html>
