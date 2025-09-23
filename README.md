@@ -25,4 +25,7 @@ This is my personal link hub where you can find my socials, art, and podcast.
 This site uses [linkyee](https://github.com/ZhgChgLi/linkyee), an open-source Linktree alternative hosted on GitHub Pages.  
 
 ---
-© 2025 Dogame. All rights reserved.  
+
+### 📜 License
+
+This project is based on [linkyee](https://github.com/ZhgChgLi/linkyee) by [ZhgChgLi](https://github.com/ZhgChgLi) and is licensed under the [MIT License](./LICENSE).  
