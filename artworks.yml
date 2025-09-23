@@ -5,7 +5,7 @@ generate_artworks: true
 # Site info for artwork pages
 site:
   name: "Dogame's Art"
-  base_url: "https://dogame-art.github.io"
+  base_url: "https://dogame.art"
 
 # Artwork list (only used when generate_artworks is true)
 # ADD YOUR ACTUAL ARTWORKS HERE
