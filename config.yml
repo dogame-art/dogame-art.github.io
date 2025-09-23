@@ -25,18 +25,18 @@ tagline: >-
 # List of links
 links:
   - link:
-      icon: "fa-brands fa-instagram"
-      text: "Instagram"
-      url: "https://www.instagram.com/Dogame__"
-      alt: "Dogame's Instagram"
-      title: "Dogame's Instagram"
-      target: "_blank"
-  - link:
       icon: "fa-brands fa-twitter"
       text: "Twitter"
       url: "https://twitter.com/Dogame_"
       alt: "Dogame's Twitter"
       title: "Dogame's Twitter"
+      target: "_blank"
+  - link:
+      icon: "fa-brands fa-instagram"
+      text: "Instagram"
+      url: "https://www.instagram.com/Dogame__"
+      alt: "Dogame's Instagram"
+      title: "Dogame's Instagram"
       target: "_blank"
   - link:
       icon: "fa-solid fa-paintbrush"
