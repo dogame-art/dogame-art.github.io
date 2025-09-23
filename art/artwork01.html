@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ artwork_title }} - Dogame Art</title>
-  
+  <title>Artwork 01 - Dogame Art</title>
+
   <!-- SEO Meta Tags -->
-  <meta name="description" content="{{ artwork_description }}">
-  <meta property="og:title" content="{{ artwork_title }} - Dogame Art" />
-  <meta property="og:description" content="{{ artwork_description }}" />
-  <meta property="og:image" content="{{ artwork_image }}" />
+  <meta name="description" content="Artwork 01 by Dogame. View on Drip Haus and Solscan." />
+  <meta property="og:title" content="Artwork 01 - Dogame Art" />
+  <meta property="og:description" content="Artwork 01 by Dogame. View on Drip Haus and Solscan." />
+  <meta property="og:image" content="./image0.jpeg" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="{{ artwork_image }}" />
-  <meta property="twitter:title" content="{{ artwork_title }} - Dogame Art" />
-  
+  <meta property="twitter:image" content="./image0.jpeg" />
+  <meta property="twitter:title" content="Artwork 01 - Dogame Art" />
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../themes/default/images/favicons/favicon-32x32.png">
-  
+
   <!-- Styles -->
   <link rel="stylesheet" href="../themes/default/styles.css" />
   <style>
@@ -27,7 +27,7 @@
       padding: 20px;
       text-align: center;
     }
-    
+
     .artwork-image {
       max-width: 100%;
       height: auto;
@@ -35,7 +35,7 @@
       box-shadow: 0 8px 32px rgba(0,0,0,0.1);
       margin-bottom: 30px;
     }
-    
+
     .artwork-title {
       font-size: 2.5rem;
       font-weight: bold;
@@ -49,14 +49,14 @@
       margin-bottom: 16px;
       font-weight: 600;
     }
-    
+
     .artwork-description {
       font-size: 1.2rem;
       color: #666;
       margin-bottom: 40px;
       line-height: 1.6;
     }
-    
+
     .artwork-links {
       display: flex;
       flex-direction: column;
@@ -64,7 +64,7 @@
       max-width: 400px;
       margin: 0 auto;
     }
-    
+
     .artwork-link {
       display: flex;
       align-items: center;
@@ -77,17 +77,17 @@
       font-weight: 600;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    
+
     .artwork-link:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
     }
-    
+
     .artwork-link i {
       margin-right: 10px;
       font-size: 1.2rem;
     }
-    
+
     .back-link {
       position: absolute;
       top: 20px;
@@ -98,28 +98,28 @@
       display: flex;
       align-items: center;
     }
-    
+
     .back-link:hover {
       color: #764ba2;
     }
-    
+
     .back-link i {
       margin-right: 5px;
     }
-    
+
     @media (max-width: 768px) {
       .artwork-container {
         padding: 15px;
       }
-      
+
       .artwork-title {
         font-size: 2rem;
       }
-      
+
       .artwork-description {
         font-size: 1rem;
       }
-      
+
       .back-link {
         position: relative;
         top: auto;
@@ -135,33 +135,35 @@
     <i class="fa-solid fa-arrow-left"></i>
     Back to Links
   </a>
-  
+
   <div class="artwork-container">
-    <img src="{{ artwork_image }}" alt="{{ artwork_title }}" class="artwork-image" />
-    
-    <h1 class="artwork-title">{{ artwork_title }}</h1>
-    {% if artist_tag %}<div class="artist-tag">{{ artist_tag }}</div>{% endif %}
-    <p class="artwork-description">{{ artwork_description }}</p>
-    
+    <img src="./image0.jpeg" alt="Artwork 01" class="artwork-image" />
+
+    <h1 class="artwork-title">Artwork 01</h1>
+    <div class="artist-tag">@Dogame</div>
+    <p class="artwork-description">A sample artwork page. Replace the image and links below for each piece.</p>
+
     <div class="artwork-links">
-      <a href="{{ drip_haus_url }}" target="_blank" class="artwork-link">
+      <a href="https://drip.haus/dogame" target="_blank" class="artwork-link">
         <i class="fa-solid fa-paintbrush"></i>
         View on Drip Haus
       </a>
-      
-      <a href="{{ solscan_url }}" target="_blank" class="artwork-link">
+
+      <a href="https://solscan.io/token/YOUR_TOKEN_ADDRESS" target="_blank" class="artwork-link">
         <i class="fa-solid fa-chart-line"></i>
         View on Solscan
       </a>
-      
-      <a href="{{ twitter_share_url }}" target="_blank" class="artwork-link">
+
+      <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20artwork%20by%20@Dogame_&url=https://dogame-art.github.io/art/artwork01.html" target="_blank" class="artwork-link">
         <i class="fa-brands fa-twitter"></i>
         Share on Twitter
       </a>
     </div>
   </div>
-  
+
   <!-- Font Awesome -->
   <script src="../themes/default/fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
 </body>
 </html>
+
+

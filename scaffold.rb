@@ -103,3 +103,4 @@ rendered_content = liquid_template.render(settings)
 File.open(template_file, 'w') do |file|
   file.write(rendered_content)
 end
+
