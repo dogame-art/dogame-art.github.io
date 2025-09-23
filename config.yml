@@ -39,7 +39,7 @@ links:
       title: "Dogame's Instagram"
       target: "_blank"
   - link:
-      icon: "fa-solid fa-paintbrush"
+      icon: "fa-solid fa-droplet"
       text: "Drip Haus"
       url: "https://drip.haus/dogame"
       alt: "Dogame's Drip Haus"
