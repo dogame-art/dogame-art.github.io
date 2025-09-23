@@ -10,7 +10,7 @@ site:
 # Artwork list (only used when generate_artworks is true)
 # ADD YOUR ACTUAL ARTWORKS HERE
 artworks:
-  - slug: "Window Shopping"
+  - slug: "WindowShopping"
     title: "Window Shopping"
     image: "art/image9.jpeg"  # Use your existing art folder structure
     description: "Sometimes it is nice to look at it before you buy it."
