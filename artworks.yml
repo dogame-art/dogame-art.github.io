@@ -15,7 +15,7 @@ artworks:
     image: "art/image9.jpeg"  # Use your existing art folder structure
     description: "Sometimes it is nice to look at it before you buy it."
     alt_text: "Artwork by Dogame"
-    drip_haus_url: "https://drip.haus/dogame"
+    drip_haus_url: "https://drip.haus/dogame/collectible/2025-art-window-shopping-691402bf"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
     
