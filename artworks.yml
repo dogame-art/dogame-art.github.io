@@ -1,6 +1,6 @@
 # Artwork Page Generation Settings
 # Set to true to enable automatic artwork page generation
-generate_artworks: false
+generate_artworks: true
 
 # Site info for artwork pages
 site:
@@ -10,20 +10,20 @@ site:
 # Artwork list (only used when generate_artworks is true)
 # ADD YOUR ACTUAL ARTWORKS HERE
 artworks:
-  - slug: "example-artwork-1"
-    title: "Example Digital Art"
-    image: "art/image0.jpeg"  # Use your existing art folder structure
-    description: "Replace this with your actual artwork description."
-    alt_text: "Example digital artwork by Dogame"
-    drip_haus_url: "https://drip.haus/dogame/artwork1"
-    solscan_url: "https://solscan.io/token/your-token-here"
-    twitter_share_url: "https://twitter.com/intent/tweet?text=Check%20out%20this%20artwork%20by%20@Dogame_"
+  - slug: "Window Shopping"
+    title: "Window Shopping"
+    image: "art/image9.jpeg"  # Use your existing art folder structure
+    description: "Sometimes it is nice to look at it before you buy it."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
     
-  - slug: "example-artwork-2"
-    title: "Another Example"
-    image: "art/image1.jpeg"  # Adjust to your actual image paths
-    description: "Description of your second artwork."
-    alt_text: "Another digital artwork by Dogame"
-    drip_haus_url: "https://drip.haus/dogame/artwork2"
-    solscan_url: "https://solscan.io/token/your-token-here-2"
-    twitter_share_url: "https://twitter.com/intent/tweet?text=Check%20out%20this%20artwork%20by%20@Dogame_"
+  #- slug: "example-artwork-2"
+   # title: "Another Example"
+   # image: "art/image1.jpeg"  # Adjust to your actual image paths
+   # description: "Description of your second artwork."
+   # alt_text: "Another digital artwork by Dogame"
+   # drip_haus_url: "https://drip.haus/dogame/artwork2"
+   # solscan_url: "https://solscan.io/token/your-token-here-2"
+    #twitter_share_url: "https://twitter.com/intent/tweet?text=Check%20out%20this%20artwork%20by%20@Dogame_"
