@@ -13,7 +13,7 @@ google_analytics_id:
 title: "Dogame's Links"
 
 # Avatar image path
-avatar: "./art/image0.jpeg"
+avatar: "art/image0.jpeg"
 
 # Name section text
 name: "@Dogame"
