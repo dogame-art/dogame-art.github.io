@@ -19,6 +19,16 @@ jobs:
         with:
           fetch-depth: 0
           
+      # NEW: Debug - Check what files are actually there
+      - name: Debug - List files in repository
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files in current directory:"
+          ls -la
+          echo "Looking for package.json specifically:"
+          find . -name "package.json" -type f
+          
       # NEW: Setup Node.js for artwork generation
       - name: Setup Node.js for artwork generation
         uses: actions/setup-node@v4
@@ -33,6 +43,11 @@ jobs:
           echo "Generating artwork pages..."
           npm run build
           echo "Artwork generation complete!"
+          echo "Files created:"
+          find . -name "WindowShopping" -type d
+          find . -name "gallery" -type d
+          echo "All directories in root:"
+          ls -la
           
       # Your existing Ruby setup
       - name: Setup Ruby
