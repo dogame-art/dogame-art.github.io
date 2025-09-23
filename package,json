@@ -1,0 +1,22 @@
+{
+  "name": "dogame-art-linktree",
+  "version": "1.0.0",
+  "description": "A self-hosted link page with artwork showcase",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "build:artworks": "node build.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "linktree",
+    "github-pages",
+    "art",
+    "portfolio"
+  ],
+  "author": "Dogame Art",
+  "license": "MIT"
+}
