@@ -126,6 +126,33 @@ body {
     flex: 1;
 }
 
+/* Snapshot Live Badge for Drip Haus (last button) */
+.link-button:last-child::after {
+    content: "SNAPSHOT LIVE";
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff0000;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    animation: glow 2s ease-in-out infinite alternate;
+    letter-spacing: 0.5px;
+    z-index: 10;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.9), 0 0 30px rgba(255, 0, 0, 0.5);
+    }
+}
+
 /* Socials Section */
 .socials-section {
     display: flex;
@@ -226,6 +253,13 @@ body {
         font-size: 1rem;
     }
     
+    .link-button:last-child::after {
+        font-size: 0.6rem;
+        padding: 3px 6px;
+        top: -6px;
+        right: -6px;
+    }
+    
     .socials-section {
         padding: 15px 20px;
         gap: 15px;
@@ -276,5 +310,12 @@ body {
     .link-button i {
         margin-right: 10px;
         font-size: 1.1rem;
+    }
+    
+    .link-button:last-child::after {
+        font-size: 0.55rem;
+        padding: 2px 5px;
+        top: -5px;
+        right: -5px;
     }
 }
