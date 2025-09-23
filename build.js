@@ -16,7 +16,11 @@ const artworkTemplate = `<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{title}} - {{siteName}}</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="../themes/default/images/favicons/favicon-32x32.png">
+  
+  <!-- Favicon - uses the artwork image -->
+  <link rel="icon" type="image/jpeg" href="../{{image}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="../{{image}}">
+  
   <link rel="stylesheet" href="../themes/default/styles.css" />
   <style>
     body { padding-bottom: 100px; }
