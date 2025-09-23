@@ -1,5 +1,4 @@
 name: 'Automatic build'
-
 on:
   push:
     branches:
@@ -10,24 +9,39 @@ on:
       - LICENSE
   workflow_dispatch:
   schedule:
-    - cron: '0 */3 * * *'  # Runs every 3 hours (UTC)
-
+    - cron: '0 */3 * * *'  # Runs every 3 hours (UTC) - fixed the syntax
 jobs:
   continuous-delivery:
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
+          
+      # NEW: Setup Node.js for artwork generation
+      - name: Setup Node.js for artwork generation
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      # NEW: Generate artwork pages before main build
+      - name: Generate artwork pages
+        run: |
+          echo "Installing npm dependencies..."
+          npm install
+          echo "Generating artwork pages..."
+          npm run build
+          echo "Artwork generation complete!"
+          
+      # Your existing Ruby setup
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.4.2
           bundler-cache: true
-
+          
+      # Your existing deploy step
       - name: Deploy
         run: bash deploy.sh
