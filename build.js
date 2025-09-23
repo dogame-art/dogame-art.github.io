@@ -218,8 +218,8 @@ function generateArtworkPages() {
     const baseUrl = config.site.base_url;
     
     config.artworks.forEach(artwork => {
-        // Create directory for artwork
-        const artworkDir = path.join(__dirname, artwork.slug);
+        // Create directory for artwork INSIDE _output folder
+        const artworkDir = path.join(__dirname, '_output', artwork.slug);
         if (!fs.existsSync(artworkDir)) {
             fs.mkdirSync(artworkDir, { recursive: true });
         }
@@ -247,6 +247,12 @@ function generateArtworkPages() {
 
 // Generate artwork showcase page (optional)
 function generateArtworkShowcase() {
+    // Create gallery directory INSIDE _output folder
+    const galleryDir = path.join(__dirname, '_output', 'gallery');
+    if (!fs.existsSync(galleryDir)) {
+        fs.mkdirSync(galleryDir, { recursive: true });
+    }
+
     const showcaseTemplate = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -380,8 +386,8 @@ function generateArtworkShowcase() {
 </body>
 </html>`;
 
-    fs.writeFileSync(path.join(__dirname, 'gallery', 'index.html'), showcaseTemplate, 'utf8');
-    console.log('Generated: gallery/index.html');
+    fs.writeFileSync(path.join(galleryDir, 'index.html'), showcaseTemplate, 'utf8');
+    console.log('Generated: _output/gallery/index.html');
 }
 
 // Main execution
@@ -389,13 +395,6 @@ console.log('Starting artwork page generation...');
 
 try {
     generateArtworkPages();
-    
-    // Create gallery directory if it doesn't exist
-    const galleryDir = path.join(__dirname, 'gallery');
-    if (!fs.existsSync(galleryDir)) {
-        fs.mkdirSync(galleryDir, { recursive: true });
-    }
-    
     generateArtworkShowcase();
     
     console.log(`\nGeneration complete! Created ${config.artworks.length} artwork pages.`);
