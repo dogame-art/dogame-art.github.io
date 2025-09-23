@@ -45,13 +45,6 @@ links:
       alt: "Dogame's Drip Haus"
       title: "Dogame's Drip Haus"
       target: "_blank"
-  - link:
-      icon: "fa-solid fa-image"
-      text: "Sample Artwork"
-      url: "./art/sample-artwork.html"
-      alt: "View Sample Artwork"
-      title: "View Sample Artwork"
-      target: "_self"
 
 # Socials (optional — these show as icons, usually in the footer/header)
 socials:

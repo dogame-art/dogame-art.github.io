@@ -48,6 +48,13 @@ if !File.exist?(template_file)
 end
 
 
+# Copy user asset directories to output (e.g., avatar images)
+if Dir.exist?("./art")
+  FileUtils.mkdir_p(File.join(destination_dir, "art"))
+  FileUtils.cp_r(Dir.glob("./art/*"), File.join(destination_dir, "art"))
+end
+
+
 template_content = File.read(template_file)
 
 settings["vars"] = {}
