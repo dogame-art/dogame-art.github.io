@@ -126,7 +126,7 @@ body {
     flex: 1;
 }
 
-/* Snapshot Live Badge for Drip Haus (last button) */
+/* Snapshot Live Badge for Drip Haus (last button) - Only Monday-Friday */
 .link-button:last-child::after {
     content: "SNAPSHOT LIVE";
     position: absolute;
@@ -143,6 +143,12 @@ body {
     animation: glow 2s ease-in-out infinite alternate;
     letter-spacing: 0.5px;
     z-index: 10;
+    display: none; /* Hidden by default */
+}
+
+/* Show badge only on weekdays */
+.weekday .link-button:last-child::after {
+    display: block;
 }
 
 @keyframes glow {
@@ -254,7 +260,7 @@ body {
         font-size: 1rem;
     }
     
-    .link-button:last-child::after {
+    .weekday .link-button:last-child::after {
         font-size: 0.6rem;
         padding: 3px 6px;
         right: 10px;
@@ -312,7 +318,7 @@ body {
         font-size: 1.1rem;
     }
     
-    .link-button:last-child::after {
+    .weekday .link-button:last-child::after {
         font-size: 0.55rem;
         padding: 2px 5px;
         right: 8px;
