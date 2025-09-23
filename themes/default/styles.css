@@ -17,7 +17,7 @@ body {
 .container {
     max-width: 600px;
     margin: 0 auto;
-    background: white;
+    background: #ffffff; /* Changed to pure white */
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -39,7 +39,7 @@ body {
 .profile-section {
     text-align: center;
     padding: 40px 30px 30px;
-    background: #ffffff;
+    background: #ffffff; /* Pure white */
 }
 
 .avatar {
@@ -68,6 +68,8 @@ body {
     color: #718096;
     font-weight: 500;
     line-height: 1.5;
+    max-width: 350px; /* Prevent long text from wrapping awkwardly */
+    margin: 0 auto; /* Center the text block */
 }
 
 /* Links Section */
@@ -130,7 +132,7 @@ body {
     justify-content: center;
     gap: 20px;
     padding: 20px 30px;
-    background: #f8f9ff;
+    background: #ffffff; /* Changed to pure white */
 }
 
 .social-link {
@@ -161,7 +163,7 @@ body {
 .footer-section {
     text-align: center;
     padding: 30px;
-    background: #f8f9ff;
+    background: #ffffff; /* Changed to pure white */
     border-top: 1px solid #e2e8f0;
 }
 
@@ -170,6 +172,8 @@ body {
     color: #718096;
     margin-bottom: 15px;
     font-weight: 500;
+    max-width: 280px; /* Prevent footer text wrapping */
+    margin: 0 auto 15px auto; /* Center and add bottom margin */
 }
 
 .copyright {
@@ -212,6 +216,7 @@ body {
     
     .tagline {
         font-size: 1rem;
+        max-width: 300px; /* Smaller max-width on mobile */
     }
     
     .links-section {
@@ -240,6 +245,11 @@ body {
     .footer-section {
         padding: 20px;
     }
+    
+    .footer-text {
+        font-size: 0.95rem;
+        max-width: 250px; /* Even smaller on mobile */
+    }
 }
 
 @media (max-width: 480px) {
@@ -256,6 +266,11 @@ body {
         font-size: 1.5rem;
     }
     
+    .tagline {
+        font-size: 0.95rem;
+        max-width: 260px; /* Smaller for very small screens */
+    }
+    
     .links-section {
         padding: 15px;
     }
@@ -268,5 +283,10 @@ body {
     .link-button i {
         margin-right: 10px;
         font-size: 1.1rem;
+    }
+    
+    .footer-text {
+        font-size: 0.9rem;
+        max-width: 220px; /* Smallest for tiny screens */
     }
 }
