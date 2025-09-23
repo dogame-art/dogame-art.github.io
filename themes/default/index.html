@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{{ tagline }}">
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:description" content="{{ tagline }}" />
+    <meta property="og:image" content="{{ avatar }}" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:image" content="{{ avatar }}" />
+    <meta property="twitter:title" content="{{ title }}" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="./images/favicons/favicon-32x32.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles.css" />
+    
+    <!-- Google Analytics -->
+    {% if google_analytics_id %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ google_analytics_id }}');
+    </script>
+    {% endif %}
+</head>
+<body>
+    <div class="container">
+        <div class="profile-section">
+            <img src="{{ avatar }}" alt="{{ name }}" class="avatar" />
+            <h1 class="name">{{ name }}</h1>
+            <p class="tagline">{{ tagline }}</p>
+        </div>
+        
+        <div class="links-section">
+            {% for link in links %}
+            <a href="{{ link.link.url }}" 
+               class="link-button" 
+               target="{{ link.link.target }}"
+               title="{{ link.link.title }}"
+               alt="{{ link.link.alt }}">
+                <i class="{{ link.link.icon }}"></i>
+                <span>{{ link.link.text }}</span>
+            </a>
+            {% endfor %}
+        </div>
+        
+        <div class="socials-section">
+            {% for social in socials %}
+            <a href="{{ social.social.url }}" 
+               class="social-link" 
+               target="{{ social.social.target }}"
+               title="{{ social.social.title }}"
+               alt="{{ social.social.alt }}">
+                <i class="{{ social.social.icon }}"></i>
+            </a>
+            {% endfor %}
+        </div>
+        
+        <div class="footer-section">
+            <p class="footer-text">{{ footer }}</p>
+            <p class="copyright">{{ copyright }}</p>
+        </div>
+    </div>
+    
+    <!-- Font Awesome -->
+    <script src="./fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+</body>
+</html>
