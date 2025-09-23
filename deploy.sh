@@ -1,17 +1,10 @@
 #!/usr/bin/env bash
-# ref: https://github.com/jekyll/jekyll
-
-set -eu  # Exit on error or unset variable
-
+set -eu
 PAGES_BRANCH="gh-pages"
-
 SITE_DIR="_output"
-
-_backup_dir="$(mktemp -d)"
-
+_backup_dir="$(mktemp -d)"  # Fixed the asterisks
 
 init() {
-  # Check if the script is running in a GitHub Actions environment
   if [[ -z ${GITHUB_ACTION+x} ]]; then
     echo "ERROR: Not allowed to deploy outside of the GitHub Action environment."
     exit 1
@@ -23,9 +16,13 @@ build() {
   if [[ -d $SITE_DIR ]]; then
     rm -rf "$SITE_DIR"
   fi
-
   # Run the Ruby script to generate the output
   bundle exec ruby "./scaffold.rb"
+  
+  # Generate artwork pages AFTER Ruby build
+  echo "Generating artwork pages..."
+  npm install
+  npm run build
 }
 
 setup_gh() {
@@ -39,7 +36,6 @@ setup_gh() {
 backup() {
   mv "$SITE_DIR"/* "$_backup_dir"
   mv .git "$_backup_dir"
-
   if [[ -f CNAME ]]; then
     mv CNAME "$_backup_dir"
   fi
@@ -48,23 +44,16 @@ backup() {
 flush() {
   rm -rf ./*
   rm -rf .[^.] .??*
-
   shopt -s dotglob nullglob
-
   mv "$_backup_dir"/* .
 }
 
 deploy() {
-  # Configure Git user for the commit
   git config --global user.name "ZhgChgLiBot"
   git config --global user.email "no-reply@zhgchg.li"
-
-  # Reset the current HEAD to prepare for new commits
   git update-ref -d HEAD
   git add -A
   git commit -m "[Automation] Site update No.${GITHUB_RUN_NUMBER}"
-
-  # Push the new branch to the remote repository
   git push -u origin "$PAGES_BRANCH" --force
 }
 
@@ -77,5 +66,4 @@ main() {
   deploy
 }
 
-# Execute the main function
 main
