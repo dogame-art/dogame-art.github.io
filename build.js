@@ -17,11 +17,31 @@ const artworkTemplate = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{title}} - {{siteName}}</title>
   
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="{{description}}">
+  <meta property="og:title" content="{{title}} - {{siteName}}" />
+  <meta property="og:description" content="{{description}}" />
+  <meta property="og:image" content="{{baseUrl}}/{{image}}" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:image" content="{{baseUrl}}/{{image}}" />
+  <meta property="twitter:title" content="{{title}} - {{siteName}}" />
+  
   <!-- Favicon - uses the artwork image -->
   <link rel="icon" type="image/jpeg" href="../{{image}}">
   <link rel="icon" type="image/png" sizes="32x32" href="../{{image}}">
   
   <link rel="stylesheet" href="../themes/default/styles.css" />
+  
+  <!-- Google Analytics for artwork pages -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-95K6LY8JD8"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-95K6LY8JD8');
+  </script>
+  
   <style>
     body { 
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -212,18 +232,28 @@ const artworkTemplate = `<!DOCTYPE html>
     <h1 class="artwork-title">{{title}}</h1>
     <p class="artwork-description">{{description}}</p>
     <div class="artwork-links">
-      <a href="{{dripHausUrl}}" target="_blank" class="artwork-link">
+      <a href="{{dripHausUrl}}" target="_blank" class="artwork-link" onclick="gtag('event', 'click', {'event_category': 'artwork_links', 'event_label': 'Drip Haus - {{title}}', 'value': 1});">
         <i class="fa-solid fa-droplet"></i>View on Drip Haus
       </a>
-      <a href="{{solscanUrl}}" target="_blank" class="artwork-link">
+      <a href="{{solscanUrl}}" target="_blank" class="artwork-link" onclick="gtag('event', 'click', {'event_category': 'artwork_links', 'event_label': 'Solscan - {{title}}', 'value': 1});">
         <i class="fa-solid fa-chart-line"></i>View on Solscan
       </a>
     </div>
   </div>
-  <a href="../" class="back-link">
+  <a href="../" class="back-link" onclick="gtag('event', 'click', {'event_category': 'navigation', 'event_label': 'Back to Links from {{title}}', 'value': 1});">
     <i class="fa-solid fa-arrow-left"></i>Dogame's Links
   </a>
+  
   <script src="../themes/default/fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+  
+  <!-- Track artwork page view -->
+  <script>
+  gtag('event', 'page_view', {
+      'event_category': 'artwork_pages',
+      'event_label': '{{title}}',
+      'custom_map': {'artwork_slug': '{{slug}}'}
+  });
+  </script>
 </body>
 </html>`;
 
@@ -242,21 +272,10 @@ function generateArtworkPages() {
             .replace(/{{description}}/g, artwork.description)
             .replace(/{{image}}/g, artwork.image)
             .replace(/{{altText}}/g, artwork.alt_text)
+            .replace(/{{slug}}/g, artwork.slug)
+            .replace(/{{baseUrl}}/g, baseUrl)
             .replace(/{{dripHausUrl}}/g, artwork.drip_haus_url || '#')
             .replace(/{{solscanUrl}}/g, artwork.solscan_url || '#');
 
         const indexPath = path.join(artworkDir, 'index.html');
-        fs.writeFileSync(indexPath, htmlContent, 'utf8');
-        
-        console.log(`Generated: _output/${artwork.slug}/index.html`);
-    });
-}
-
-console.log('Starting artwork page generation...');
-try {
-    generateArtworkPages();
-    console.log('Generation complete!');
-} catch (error) {
-    console.error('Error:', error);
-    process.exit(1);
-}
+        fs.writeFileSyn
