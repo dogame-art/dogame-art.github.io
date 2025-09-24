@@ -7,7 +7,7 @@ theme: default
 lang: "en"
 
 # Google Analytics tracking id (leave blank if not using)
-google_analytics_id:
+google_analytics_id: "G-95K6LY8JD8"
 
 # HTML Title
 title: "Dogame's Links"
@@ -61,7 +61,7 @@ socials:
       alt: "Dogame's Twitter"
       target: "_blank"
   - social:
-      icon: "fa-solid fa-paintbrush"
+      icon: "fa-solid fa-droplet"
       url: "https://drip.haus/dogame"
       title: "Drip Haus"
       alt: "Dogame's Drip Haus"
