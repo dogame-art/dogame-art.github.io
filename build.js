@@ -23,28 +23,186 @@ const artworkTemplate = `<!DOCTYPE html>
   
   <link rel="stylesheet" href="../themes/default/styles.css" />
   <style>
-    body { padding-bottom: 100px; }
-    .artwork-container { max-width: 800px; margin: 0 auto; padding: 40px 20px 20px; text-align: center; }
-    .artwork-image { max-width: 500px; width: 90%; height: auto; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); margin-bottom: 30px; }
-    .artwork-title { font-size: 2.5rem; font-weight: bold; margin-bottom: 6px; color: #333; }
-    .artwork-description { font-size: 1.2rem; color: #666; margin-bottom: 40px; line-height: 1.6; }
-    .artwork-links { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
-    .artwork-link { display: flex; align-items: center; justify-content: center; padding: 15px 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .artwork-link:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4); }
-    .artwork-link i { margin-right: 10px; font-size: 1.2rem; }
-    .back-link { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(102, 126, 234, 0.95); color: white; text-decoration: none; font-weight: 600; display: flex; align-items: center; padding: 15px 30px; border-radius: 50px; backdrop-filter: blur(10px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3); transition: all 0.3s ease; z-index: 1000; border: 2px solid rgba(255, 255, 255, 0.2); }
-    .back-link:hover { background: rgba(118, 75, 162, 0.95); transform: translateX(-50%) translateY(-5px); box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4); }
-    .back-link i { margin-right: 8px; font-size: 1rem; }
-    @media (max-width: 768px) {
-      .artwork-container { padding: 20px 15px; }
-      .artwork-image { max-width: 400px; width: 85%; }
-      .artwork-title { font-size: 2rem; }
-      .artwork-description { font-size: 1rem; }
-      .back-link { bottom: 20px; padding: 12px 25px; font-size: 0.9rem; }
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      margin: 0;
     }
+    
+    .artwork-container { 
+      max-width: 600px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      animation: fadeInUp 0.8s ease-out;
+      padding: 40px 30px;
+      text-align: center;
+      margin-bottom: 100px;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .artwork-image { 
+      max-width: 500px; 
+      width: 90%; 
+      height: auto; 
+      border-radius: 12px; 
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1); 
+      margin-bottom: 30px; 
+    }
+    
+    .artwork-title { 
+      font-size: 2.5rem; 
+      font-weight: 700; 
+      margin-bottom: 8px; 
+      color: #2d3748;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .artwork-description { 
+      font-size: 1.2rem; 
+      color: #718096; 
+      margin-bottom: 40px; 
+      line-height: 1.6; 
+      font-weight: 500;
+    }
+    
+    .artwork-links { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 15px; 
+      max-width: 400px; 
+      margin: 0 auto; 
+    }
+    
+    .artwork-link { 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      padding: 15px 25px; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+      color: white; 
+      text-decoration: none; 
+      border-radius: 12px; 
+      font-weight: 600; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .artwork-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .artwork-link:hover::before {
+      left: 100%;
+    }
+    
+    .artwork-link:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4); 
+    }
+    
+    .artwork-link i { 
+      margin-right: 10px; 
+      font-size: 1.2rem; 
+    }
+    
+    .back-link { 
+      position: fixed; 
+      bottom: 30px; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      background: rgba(255, 255, 255, 0.95); 
+      color: #667eea; 
+      text-decoration: none; 
+      font-weight: 600; 
+      display: flex; 
+      align-items: center; 
+      padding: 15px 30px; 
+      border-radius: 50px; 
+      backdrop-filter: blur(10px); 
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+      transition: all 0.3s ease; 
+      z-index: 1000; 
+      border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+    
+    .back-link:hover { 
+      background: rgba(255, 255, 255, 1);
+      color: #764ba2;
+      transform: translateX(-50%) translateY(-5px); 
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15); 
+    }
+    
+    .back-link i { 
+      margin-right: 8px; 
+      font-size: 1rem; 
+    }
+    
+    @media (max-width: 768px) {
+      .artwork-container { 
+        padding: 30px 20px;
+        margin: 10px;
+      }
+      
+      .artwork-image { 
+        max-width: 400px; 
+        width: 85%; 
+      }
+      
+      .artwork-title { 
+        font-size: 2rem; 
+      }
+      
+      .artwork-description { 
+        font-size: 1rem; 
+      }
+      
+      .back-link { 
+        bottom: 20px; 
+        padding: 12px 25px; 
+        font-size: 0.9rem; 
+      }
+    }
+
     @media (max-width: 480px) {
-      .artwork-image { max-width: 320px; width: 80%; }
-      .back-link { bottom: 15px; padding: 10px 20px; font-size: 0.85rem; }
+      .artwork-image { 
+        max-width: 320px; 
+        width: 80%; 
+      }
+      
+      .back-link { 
+        bottom: 15px; 
+        padding: 10px 20px; 
+        font-size: 0.85rem; 
+      }
     }
   </style>
 </head>
@@ -55,7 +213,7 @@ const artworkTemplate = `<!DOCTYPE html>
     <p class="artwork-description">{{description}}</p>
     <div class="artwork-links">
       <a href="{{dripHausUrl}}" target="_blank" class="artwork-link">
-        <i class="fa-solid fa-paintbrush"></i>View on Drip Haus
+        <i class="fa-solid fa-droplet"></i>View on Drip Haus
       </a>
       <a href="{{solscanUrl}}" target="_blank" class="artwork-link">
         <i class="fa-solid fa-chart-line"></i>View on Solscan
