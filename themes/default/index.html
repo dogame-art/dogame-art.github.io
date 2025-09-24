@@ -79,13 +79,44 @@
     <!-- Weekday Detection for Snapshot Live Badge -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-        const isWeekday = today >= 1 && today <= 5; // Monday (1) through Friday (5)
+        const today = new Date().getDay();
+        const isWeekday = today >= 1 && today <= 5;
         
         if (isWeekday) {
             document.body.classList.add('weekday');
         }
     });
     </script>
+    
+    <!-- Custom Click Tracking -->
+    {% if google_analytics_id %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Track main link button clicks
+        document.querySelectorAll('.link-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const linkText = this.querySelector('span').textContent;
+                gtag('event', 'click', {
+                    'event_category': 'social_links',
+                    'event_label': linkText,
+                    'value': 1
+                });
+            });
+        });
+        
+        // Track social icon clicks
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const linkTitle = this.getAttribute('title');
+                gtag('event', 'click', {
+                    'event_category': 'social_icons',
+                    'event_label': linkTitle,
+                    'value': 1
+                });
+            });
+        });
+    });
+    </script>
+    {% endif %}
 </body>
 </html>
