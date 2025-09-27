@@ -278,4 +278,19 @@ function generateArtworkPages() {
             .replace(/{{solscanUrl}}/g, artwork.solscan_url || '#');
 
         const indexPath = path.join(artworkDir, 'index.html');
-        fs.writeFileSyn
+        fs.writeFileSync(indexPath, htmlContent);
+        
+        console.log(`Generated artwork page: ${artwork.slug}/index.html`);
+    });
+}
+
+// Create output directory if it doesn't exist
+const outputDir = path.join(__dirname, '_output');
+if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+}
+
+// Generate artwork pages
+generateArtworkPages();
+
+console.log('Artwork page generation complete!');
