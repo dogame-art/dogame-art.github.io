@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogame's Links</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Artist & Host of Drawn to the Mic">
+    <meta property="og:title" content="Dogame's Links" />
+    <meta property="og:description" content="Artist & Host of Drawn to the Mic" />
+    <meta property="og:image" content="art/image0.jpeg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:image" content="art/image0.jpeg" />
+    <meta property="twitter:title" content="Dogame's Links" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="./images/favicons/favicon-32x32.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles.css" />
+    
+    <!-- Google Analytics -->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-95K6LY8JD8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-95K6LY8JD8');
+    </script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="profile-section">
+            <img src="art/image0.jpeg" alt="@Dogame" class="avatar" />
+            <h1 class="name">@Dogame</h1>
+            <p class="tagline">Artist & Host of Drawn to the Mic</p>
+        </div>
+        
+        <div class="links-section">
+            
+            <a href="https://twitter.com/Dogame_" 
+               class="link-button" 
+               target="_blank"
+               title="Dogame's Twitter"
+               alt="Dogame's Twitter">
+                <i class="fa-brands fa-twitter"></i>
+                <span>Twitter</span>
+            </a>
+            
+            <a href="https://www.instagram.com/Dogame__" 
+               class="link-button" 
+               target="_blank"
+               title="Dogame's Instagram"
+               alt="Dogame's Instagram">
+                <i class="fa-brands fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+            
+            <a href="https://drip.haus/dogame" 
+               class="link-button" 
+               target="_blank"
+               title="Dogame's Drip Haus"
+               alt="Dogame's Drip Haus">
+                <i class="fa-solid fa-droplet"></i>
+                <span>Drip Haus</span>
+            </a>
+            
+        </div>
+        
+        <div class="socials-section">
+            
+            <a href="https://www.instagram.com/Dogame__" 
+               class="social-link" 
+               target="_blank"
+               title="Instagram"
+               alt="Dogame's Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            
+            <a href="https://twitter.com/Dogame_" 
+               class="social-link" 
+               target="_blank"
+               title="Twitter"
+               alt="Dogame's Twitter">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+            
+            <a href="https://drip.haus/dogame" 
+               class="social-link" 
+               target="_blank"
+               title="Drip Haus"
+               alt="Dogame's Drip Haus">
+                <i class="fa-solid fa-droplet"></i>
+            </a>
+            
+        </div>
+        
+        <div class="footer-section">
+            <p class="footer-text">Thanks for stopping by!
+</p>
+            <p class="copyright">© 2025 Dogame.
+</p>
+        </div>
+    </div>
+    
+    <!-- Font Awesome -->
+    <script src="./fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+    
+    <!-- Weekday Detection for Snapshot Live Badge -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().getDay();
+        const isWeekday = today >= 1 && today <= 5;
+        
+        if (isWeekday) {
+            document.body.classList.add('weekday');
+        }
+    });
+    </script>
+    
+    <!-- Custom Click Tracking -->
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Track main link button clicks
+        document.querySelectorAll('.link-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const linkText = this.querySelector('span').textContent;
+                gtag('event', 'click', {
+                    'event_category': 'social_links',
+                    'event_label': linkText,
+                    'value': 1
+                });
+            });
+        });
+        
+        // Track social icon clicks
+        document.querySelectorAll('.social-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const linkTitle = this.getAttribute('title');
+                gtag('event', 'click', {
+                    'event_category': 'social_icons',
+                    'event_label': linkTitle,
+                    'value': 1
+                });
+            });
+        });
+    });
+    </script>
+    
+</body>
+</html>
