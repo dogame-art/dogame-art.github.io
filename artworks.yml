@@ -19,11 +19,11 @@ artworks:
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
     
-  #- slug: "example-artwork-2"
-   # title: "Another Example"
-   # image: "art/image1.jpeg"  # Adjust to your actual image paths
-   # description: "Description of your second artwork."
-   # alt_text: "Another digital artwork by Dogame"
-   # drip_haus_url: "https://drip.haus/dogame/artwork2"
-   # solscan_url: "https://solscan.io/token/your-token-here-2"
-    #twitter_share_url: "https://twitter.com/intent/tweet?text=Check%20out%20this%20artwork%20by%20@Dogame_"
+  - slug: "PortalOverflow"
+    title: "Portal Overflow"
+    image: "art/PortalOverflow.jpeg"  # Adjust to your actual image paths
+    description: "Sometimes the unknown is meant to stay that way"
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/studio/a8f18b21-b8fd-4df5-bb6f-1d58d324c195/collectibles/b932c0fe-bcbe-4a50-a299-c4479d26ebc2/deployments"
+    solscan_url: "https://solscan.io/token/your-token-here-2"
+    twitter_share_url: "https://twitter.com/dogame_"
