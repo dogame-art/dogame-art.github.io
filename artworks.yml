@@ -19,7 +19,7 @@ artworks:
     drip_haus_url: "https://drip.haus/dogame/collectible/2025-art-window-shopping-691402bf"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: true  # This one IS available - has a page
+    published: true
     
   - slug: "PortalOverflow"
     title: "Portal Overflow"
@@ -27,26 +27,66 @@ artworks:
     description: "Sometimes the unknown is meant to stay that way"
     alt_text: "Artwork by Dogame"
     drip_haus_url: "https://drip.haus/studio/a8f18b21-b8fd-4df5-bb6f-1d58d324c195/collectibles/b932c0fe-bcbe-4a50-a299-c4479d26ebc2/deployments"
-    solscan_url: "https://solscan.io/token/your-token-here-2"
+    solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: true  # This one IS available - has a page
+    published: true
     
   - slug: "ChickenHead"
-    title: "Next Piece"
-    image: "art/nextpiece.jpeg"
-    description: "Coming soon - description of next piece"
+    title: "Chicken Head"
+    image: "art/ChickenHead.jpeg"
+    description: "A unique vision waiting to be revealed."
     alt_text: "Artwork by Dogame"
     drip_haus_url: "https://drip.haus/dogame"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: false  # This one is NOT available yet - shows "COMING SOON"
+    published: false
     
-  - slug: "FourthPiece"
-    title: "Fourth Piece"
-    image: "art/fourthpiece.jpeg"
-    description: "Coming soon - description of fourth piece"
+  - slug: "DeskWork"
+    title: "Desk Work"
+    image: "art/DeskWork.jpeg"
+    description: "Where creativity meets dedication."
     alt_text: "Artwork by Dogame"
     drip_haus_url: "https://drip.haus/dogame"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: false  # This one is NOT available yet - shows "COMING SOON"
+    published: false
+    
+  - slug: "LonesomeGiant"
+    title: "Lonesome Giant"
+    image: "art/LonesomeGiant.jpeg"
+    description: "Standing tall in solitude."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: false
+    
+  - slug: "RainofArrows"
+    title: "Rain of Arrows"
+    image: "art/RainofArrows.jpeg"
+    description: "A storm of precision and power."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: false
+    
+  - slug: "UberSummon"
+    title: "Uber Summon"
+    image: "art/UberSummon.jpeg"
+    description: "Calling forth something extraordinary."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: false
+    
+  - slug: "Chicken"
+    title: "Chicken"
+    image: "art/chicken.jpeg"
+    description: "A feathered friend with character."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: false
