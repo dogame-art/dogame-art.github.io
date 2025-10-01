@@ -1,3 +1,4 @@
+# .github/workflows/security.yml - FIXED VERSION
 name: 'Security Scanning'
 
 on:
@@ -108,10 +109,12 @@ jobs:
         with:
           fetch-depth: 0
       
+      # FIXED: Use @v2 tag instead of commit SHA (Gitleaks requirement)
       - name: Gitleaks Scan
-        uses: gitleaks/gitleaks-action@cb7149a9e14ad5c25f3c9f13eccbd67df6e7f10f # v2.3.6
+        uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_SUMMARY: true
 
   eslint-security:
     name: 'ESLint Security Check'
