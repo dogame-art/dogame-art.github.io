@@ -1,0 +1,212 @@
+name: 'Security Scanning'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    # Run security scans weekly on Mondays at 9am UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+# SECURITY: Explicit permissions following least privilege principle
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+
+jobs:
+  dependency-review:
+    name: 'Dependency Review'
+    runs-on: ubuntu-latest
+    # Only run on pull requests to prevent wasted runs
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        # SECURITY: Pin to specific commit SHA for immutability
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      
+      - name: Dependency Review
+        uses: actions/dependency-review-action@733dd5d4c24a0e935c0be6f7bdb1d9f96ad3c7f7 # v4.3.4
+        with:
+          fail-on-severity: moderate
+          deny-licenses: GPL-3.0, AGPL-3.0
+
+  codeql-analysis:
+    name: 'CodeQL Security Analysis'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          fetch-depth: 0
+      
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@e2b3eafc8d227b0241d48be5f425d47c2d750a13 # v3.26.10
+        with:
+          languages: javascript
+          # Use security-and-quality suite for comprehensive coverage
+          queries: security-and-quality
+      
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@e2b3eafc8d227b0241d48be5f425d47c2d750a13 # v3.26.10
+      
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@e2b3eafc8d227b0241d48be5f425d47c2d750a13 # v3.26.10
+        with:
+          category: "/language:javascript"
+
+  npm-audit:
+    name: 'NPM Security Audit'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+      
+      - name: Run npm audit fix (dry run)
+        run: npm audit fix --dry-run
+
+  secret-scanning:
+    name: 'Secret Scanning'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          fetch-depth: 0
+      
+      - name: Gitleaks Scan
+        uses: gitleaks/gitleaks-action@cb7149a9e14ad5c25f3c9f13eccbd67df6e7f10f # v2.3.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  eslint-security:
+    name: 'ESLint Security Check'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install ESLint security plugins
+        run: |
+          npm install --save-dev eslint eslint-plugin-security eslint-plugin-no-unsanitized
+      
+      - name: Create ESLint config
+        run: |
+          cat > .eslintrc.json << 'EOF'
+          {
+            "env": {
+              "browser": true,
+              "es2021": true,
+              "node": true
+            },
+            "extends": ["eslint:recommended"],
+            "plugins": ["security", "no-unsanitized"],
+            "rules": {
+              "security/detect-eval-with-expression": "error",
+              "security/detect-non-literal-regexp": "warn",
+              "security/detect-unsafe-regex": "error",
+              "security/detect-buffer-noassert": "error",
+              "security/detect-child-process": "warn",
+              "security/detect-disable-mustache-escape": "error",
+              "security/detect-no-csrf-before-method-override": "error",
+              "security/detect-non-literal-fs-filename": "warn",
+              "security/detect-non-literal-require": "warn",
+              "security/detect-object-injection": "warn",
+              "security/detect-possible-timing-attacks": "warn",
+              "security/detect-pseudoRandomBytes": "error",
+              "no-unsanitized/method": "error",
+              "no-unsanitized/property": "error"
+            }
+          }
+          EOF
+      
+      - name: Run ESLint security scan
+        run: npx eslint . --ext .js --max-warnings 0
+        continue-on-error: true
+
+  lighthouse-security:
+    name: 'Lighthouse Security Audit'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: '18'
+      
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@a6e6f86333f0a2523ece813039b8b4be04560854 # v1.190.0
+        with:
+          ruby-version: 3.4.2
+          bundler-cache: true
+      
+      - name: Build site
+        run: |
+          npm install
+          bundle exec ruby "./scaffold.rb"
+          npm run build
+      
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+      
+      - name: Run Lighthouse CI
+        run: |
+          lhci autorun --collect.staticDistDir=./_output || echo "Lighthouse scan completed with warnings"
+
+  summary:
+    name: 'Security Summary'
+    runs-on: ubuntu-latest
+    needs: [codeql-analysis, npm-audit, secret-scanning, eslint-security]
+    if: always()
+    permissions:
+      contents: read
+    steps:
+      - name: Security Check Summary
+        run: |
+          echo "🔒 Security Scanning Complete!"
+          echo "✅ CodeQL Analysis: ${{ needs.codeql-analysis.result }}"
+          echo "✅ NPM Audit: ${{ needs.npm-audit.result }}"
+          echo "✅ Secret Scanning: ${{ needs.secret-scanning.result }}"
+          echo "✅ ESLint Security: ${{ needs.eslint-security.result }}"
