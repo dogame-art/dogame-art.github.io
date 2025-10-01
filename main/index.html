@@ -272,9 +272,10 @@
         <div class="intro-section">
             <h1 class="intro-title">Dogame Art Collection</h1>
             <p class="intro-text">
-                Welcome to my digital art collection. These are all physcial sticky notes of all shapes, sizes, and colors.
-                I am drawing life on them hoping something sticks 😉.
-                Thank you and enjoy! 
+                Welcome to my digital art collection. Each piece is accompanied by a physical NFC-enabled artwork 
+                that connects to my custom Arduino art calendar. Scan the NFC chip with your phone to explore the 
+                piece, or use it with the Art Calendar to display exclusive digital versions. New artworks are 
+                released weekly, blending physical and digital experiences.
             </p>
         </div>
 
@@ -328,9 +329,9 @@
                 
                 // Render each artwork
                 for (const artwork of data.artworks) {
-                    console.log('Processing artwork:', artwork.slug);
+                    console.log('Processing artwork:', artwork.slug, 'published:', artwork.published);
                     
-                    // Check if the slug page exists
+                    // Check if the slug page exists (should match published: true)
                     const isAvailable = await checkPageExists(artwork.slug);
                     console.log(`${artwork.slug} available:`, isAvailable);
                     
@@ -341,14 +342,21 @@
                         tile.onclick = () => window.location.href = `/${artwork.slug}/`;
                     }
                     
+                    // Determine badge based on published status
+                    let badge = '';
+                    if (artwork.published === true) {
+                        badge = '<div class="available-badge">AVAILABLE</div>';
+                    } else if (artwork.published === false) {
+                        badge = '<div class="coming-soon-badge">COMING SOON</div>';
+                    }
+                    // If published is null or undefined, no badge
+                    
                     tile.innerHTML = `
                         <img src="/${artwork.image}" alt="${artwork.alt_text || artwork.title}" class="artwork-image">
                         <div class="artwork-overlay">
                             <h3 class="artwork-title">${artwork.title}</h3>
                         </div>
-                        ${isAvailable 
-                            ? '<div class="available-badge">AVAILABLE</div>' 
-                            : '<div class="coming-soon-badge">COMING SOON</div>'}
+                        ${badge}
                     `;
                     
                     grid.appendChild(tile);
