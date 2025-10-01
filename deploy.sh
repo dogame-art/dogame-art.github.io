@@ -2,7 +2,7 @@
 set -eu
 PAGES_BRANCH="gh-pages"
 SITE_DIR="_output"
-_backup_dir="$(mktemp -d)"  # Fixed the asterisks
+_backup_dir="$(mktemp -d)"
 
 init() {
   if [[ -z ${GITHUB_ACTION+x} ]]; then
@@ -23,6 +23,18 @@ build() {
   echo "Generating artwork pages..."
   npm install
   npm run build
+  
+  # Copy main portfolio page to output
+  echo "Copying main portfolio page..."
+  if [[ -d "main" ]]; then
+    cp -r main "$SITE_DIR/"
+  fi
+  
+  # Copy artworks.yml to output for client-side access
+  echo "Copying artworks.yml..."
+  if [[ -f "artworks.yml" ]]; then
+    cp artworks.yml "$SITE_DIR/"
+  fi
 }
 
 setup_gh() {
