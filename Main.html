@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogame Art - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Intro Section */
+        .intro-section {
+            padding: 60px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+        }
+
+        .intro-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: #718096;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 60px 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .artwork-tile {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            aspect-ratio: 1;
+        }
+
+        .artwork-tile:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .artwork-tile.unavailable {
+            cursor: default;
+            opacity: 0.6;
+        }
+
+        .artwork-tile.unavailable:hover {
+            transform: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .artwork-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .artwork-tile:hover .artwork-overlay {
+            transform: translateY(0);
+        }
+
+        .artwork-title {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .available-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            letter-spacing: 0.5px;
+            z-index: 10;
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(113, 128, 150, 0.9);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            z-index: 10;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #718096;
+            font-size: 1.2rem;
+        }
+
+        /* Back to Links Button */
+        .back-section {
+            padding: 40px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .back-button i {
+            margin-right: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .intro-section {
+                padding: 40px 20px;
+            }
+
+            .intro-title {
+                font-size: 2rem;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+
+            .gallery-section {
+                padding: 40px 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .back-section {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .intro-title {
+                font-size: 1.5rem;
+            }
+
+            .intro-text {
+                font-size: 0.95rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .back-button {
+                padding: 14px 24px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Intro Section -->
+        <div class="intro-section">
+            <h1 class="intro-title">Dogame Art Collection</h1>
+            <p class="intro-text">
+                Welcome to my digital art collection. Each piece is accompanied by a physical NFC-enabled artwork 
+                that connects to my custom Arduino art calendar. Scan the NFC chip with your phone to explore the 
+                piece, or use it with the Art Calendar to display exclusive digital versions. New artworks are 
+                released weekly, blending physical and digital experiences.
+            </p>
+        </div>
+
+        <!-- Gallery Section -->
+        <div class="gallery-section">
+            <div class="gallery-grid" id="artworkGrid">
+                <div class="loading">Loading artwork collection...</div>
+            </div>
+        </div>
+
+        <!-- Back to Links -->
+        <div class="back-section">
+            <a href="/" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Links
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script>
+        async function loadArtworks() {
+            const grid = document.getElementById('artworkGrid');
+            
+            try {
+                // Fetch and parse artworks.yml
+                const response = await fetch('/artworks.yml');
+                const yamlText = await response.text();
+                const data = jsyaml.load(yamlText);
+                
+                // Clear loading message
+                grid.innerHTML = '';
+                
+                // Check if artworks exist and are enabled
+                if (!data.generate_artworks || !data.artworks || data.artworks.length === 0) {
+                    grid.innerHTML = '<div class="loading">No artworks available yet.</div>';
+                    return;
+                }
+                
+                // Render each artwork
+                for (const artwork of data.artworks) {
+                    // Check if the slug page exists
+                    const isAvailable = await checkPageExists(artwork.slug);
+                    
+                    const tile = document.createElement('div');
+                    tile.className = `artwork-tile ${!isAvailable ? 'unavailable' : ''}`;
+                    
+                    if (isAvailable) {
+                        tile.onclick = () => window.location.href = `/${artwork.slug}/`;
+                    }
+                    
+                    tile.innerHTML = `
+                        <img src="/${artwork.image}" alt="${artwork.alt_text || artwork.title}" class="artwork-image">
+                        <div class="artwork-overlay">
+                            <h3 class="artwork-title">${artwork.title}</h3>
+                        </div>
+                        ${isAvailable 
+                            ? '<div class="available-badge">AVAILABLE</div>' 
+                            : '<div class="coming-soon-badge">COMING SOON</div>'}
+                    `;
+                    
+                    grid.appendChild(tile);
+                }
+                
+            } catch (error) {
+                console.error('Error loading artworks:', error);
+                grid.innerHTML = '<div class="loading">Error loading artworks. Please try again later.</div>';
+            }
+        }
+
+        async function checkPageExists(slug) {
+            try {
+                const response = await fetch(`/${slug}/`, { method: 'HEAD' });
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        // Load artworks on page load
+        loadArtworks();
+    </script>
+</body>
+</html>
