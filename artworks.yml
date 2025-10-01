@@ -8,8 +8,10 @@ site:
   base_url: "https://dogame.art"
 
 # Artwork list (only used when generate_artworks is true)
-# Set published: true to create a slug page and make it available
-# Set published: false (or omit it) to show as "COMING SOON" on portfolio
+# published options:
+#   true  = Creates slug page with "AVAILABLE" badge (clickable)
+#   false = Shows "COMING SOON" badge (not clickable, no page)
+#   null or omit = No badge, just showcase (not clickable, no page)
 artworks:
   - slug: "WindowShopping"
     title: "Window Shopping"
@@ -39,7 +41,7 @@ artworks:
     drip_haus_url: "https://drip.haus/dogame"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: false
+    published: null
     
   - slug: "DeskWork"
     title: "Desk Work"
@@ -49,7 +51,7 @@ artworks:
     drip_haus_url: "https://drip.haus/dogame"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: false
+    published: null
     
   - slug: "LonesomeGiant"
     title: "Lonesome Giant"
@@ -59,7 +61,7 @@ artworks:
     drip_haus_url: "https://drip.haus/dogame"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: false
+    published: null
     
   - slug: "RainofArrows"
     title: "Rain of Arrows"
@@ -69,7 +71,7 @@ artworks:
     drip_haus_url: "https://drip.haus/dogame"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: false
+    published: null
     
   - slug: "UberSummon"
     title: "Uber Summon"
@@ -79,7 +81,7 @@ artworks:
     drip_haus_url: "https://drip.haus/dogame"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: false
+    published: null
     
   - slug: "Chicken"
     title: "Chicken"
@@ -89,4 +91,4 @@ artworks:
     drip_haus_url: "https://drip.haus/dogame"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
-    published: false
+    published: null
