@@ -8,22 +8,45 @@ site:
   base_url: "https://dogame.art"
 
 # Artwork list (only used when generate_artworks is true)
-# ADD YOUR ACTUAL ARTWORKS HERE
+# Set published: true to create a slug page and make it available
+# Set published: false (or omit it) to show as "COMING SOON" on portfolio
 artworks:
   - slug: "WindowShopping"
     title: "Window Shopping"
-    image: "art/image9.jpeg"  # Use your existing art folder structure
+    image: "art/image9.jpeg"
     description: "Sometimes it is nice to look at it before you buy it."
     alt_text: "Artwork by Dogame"
     drip_haus_url: "https://drip.haus/dogame/collectible/2025-art-window-shopping-691402bf"
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
+    published: true  # This one IS available - has a page
     
   - slug: "PortalOverflow"
     title: "Portal Overflow"
-    image: "art/PortalOverflow.jpeg"  # Adjust to your actual image paths
+    image: "art/PortalOverflow.jpeg"
     description: "Sometimes the unknown is meant to stay that way"
     alt_text: "Artwork by Dogame"
     drip_haus_url: "https://drip.haus/studio/a8f18b21-b8fd-4df5-bb6f-1d58d324c195/collectibles/b932c0fe-bcbe-4a50-a299-c4479d26ebc2/deployments"
     solscan_url: "https://solscan.io/token/your-token-here-2"
     twitter_share_url: "https://twitter.com/dogame_"
+    published: true  # This one IS available - has a page
+    
+  - slug: "ChickenHead"
+    title: "Next Piece"
+    image: "art/nextpiece.jpeg"
+    description: "Coming soon - description of next piece"
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: false  # This one is NOT available yet - shows "COMING SOON"
+    
+  - slug: "FourthPiece"
+    title: "Fourth Piece"
+    image: "art/fourthpiece.jpeg"
+    description: "Coming soon - description of fourth piece"
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: false  # This one is NOT available yet - shows "COMING SOON"
