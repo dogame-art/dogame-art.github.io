@@ -25,6 +25,13 @@ tagline: >-
 # List of links
 links:
   - link:
+      icon: "fa-solid fa-palette"
+      text: "Portfolio"
+      url: "/main/"
+      alt: "Dogame's Art Portfolio"
+      title: "Dogame's Art Portfolio"
+      target: "_self"
+  - link:
       icon: "fa-brands fa-twitter"
       text: "Twitter"
       url: "https://twitter.com/Dogame_"
