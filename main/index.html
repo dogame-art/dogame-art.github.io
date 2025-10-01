@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogame Art - Portfolio</title>
 
-```
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="../themes/default/images/favicons/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="../themes/default/images/favicons/favicon-32x32.png">
-<link rel="apple-touch-icon" href="../themes/default/images/favicons/favicon-32x32.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/themes/default/images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/themes/default/images/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/themes/default/images/favicons/favicon-32x32.png">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
     * {
         margin: 0;
         padding: 0;
@@ -266,8 +264,6 @@
         }
     }
 </style>
-```
-
 </head>
 <body>
     <div class="container">
@@ -282,25 +278,25 @@
             </p>
         </div>
 
-```
-    <!-- Gallery Section -->
-    <div class="gallery-section">
-        <div class="gallery-grid" id="artworkGrid">
-            <div class="loading">Loading artwork collection...</div>
+        <!-- Gallery Section -->
+        <div class="gallery-section">
+            <div class="gallery-grid" id="artworkGrid">
+                <div class="loading">Loading artwork collection...</div>
+            </div>
+        </div>
+
+        <!-- Back to Links -->
+        <div class="back-section">
+            <a href="/" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+                Back to Links
+            </a>
         </div>
     </div>
 
-    <!-- Back to Links -->
-    <div class="back-section">
-        <a href="/" class="back-button">
-            <i class="fas fa-arrow-left"></i>
-            Back to Links
-        </a>
-    </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-<script>
+    <!-- SECURITY FIX: Added SRI integrity hash for js-yaml -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" integrity="sha512-CSBhVREyzHAjAFfBlIBakjoRUKp5h7VSweP0InR/pAJyptH7peuhCsqAI/snV+TwZmXZqoUklpXp6R6wMnYf5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
     async function loadArtworks() {
         const grid = document.getElementById('artworkGrid');
         
@@ -385,7 +381,5 @@
     // Load artworks on page load
     loadArtworks();
 </script>
-```
-
 </body>
 </html>
