@@ -35,6 +35,12 @@ build() {
   if [[ -f "artworks.yml" ]]; then
     cp artworks.yml "$SITE_DIR/"
   fi
+  
+  # Copy vercel.json to output for Vercel deployment
+  echo "Copying vercel.json..."
+  if [[ -f "vercel.json" ]]; then
+    cp vercel.json "$SITE_DIR/"
+  fi
 }
 
 setup_gh() {
