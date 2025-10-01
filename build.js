@@ -260,7 +260,12 @@ const artworkTemplate = `<!DOCTYPE html>
 function generateArtworkPages() {
     const baseUrl = config.site.base_url;
     
-    config.artworks.forEach(artwork => {
+    // Filter only published artworks
+    const publishedArtworks = config.artworks.filter(artwork => artwork.published === true);
+    
+    console.log(`Found ${config.artworks.length} total artworks, ${publishedArtworks.length} published.`);
+    
+    publishedArtworks.forEach(artwork => {
         const artworkDir = path.join(__dirname, '_output', artwork.slug);
         if (!fs.existsSync(artworkDir)) {
             fs.mkdirSync(artworkDir, { recursive: true });
@@ -280,8 +285,17 @@ function generateArtworkPages() {
         const indexPath = path.join(artworkDir, 'index.html');
         fs.writeFileSync(indexPath, htmlContent);
         
-        console.log(`Generated artwork page: ${artwork.slug}/index.html`);
+        console.log(`✓ Generated artwork page: ${artwork.slug}/index.html`);
     });
+    
+    // Log unpublished artworks
+    const unpublishedArtworks = config.artworks.filter(artwork => artwork.published !== true);
+    if (unpublishedArtworks.length > 0) {
+        console.log(`\nUnpublished artworks (showing on portfolio with "COMING SOON"):`);
+        unpublishedArtworks.forEach(artwork => {
+            console.log(`  - ${artwork.title} (${artwork.slug})`);
+        });
+    }
 }
 
 // Create output directory if it doesn't exist
@@ -293,4 +307,4 @@ if (!fs.existsSync(outputDir)) {
 // Generate artwork pages
 generateArtworkPages();
 
-console.log('Artwork page generation complete!');
+console.log('\nArtwork page generation complete!');
