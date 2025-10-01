@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogame Art - Portfolio</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../themes/default/images/favicons/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="../themes/default/images/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="../themes/default/images/favicons/favicon-32x32.png">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -296,9 +302,19 @@
             
             try {
                 // Fetch and parse artworks.yml
+                console.log('Fetching artworks.yml...');
                 const response = await fetch('/artworks.yml');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch artworks.yml: ${response.status}`);
+                }
+                
                 const yamlText = await response.text();
+                console.log('YAML text:', yamlText);
+                
                 const data = jsyaml.load(yamlText);
+                console.log('Parsed data:', data);
                 
                 // Clear loading message
                 grid.innerHTML = '';
@@ -309,10 +325,15 @@
                     return;
                 }
                 
+                console.log('Found', data.artworks.length, 'artworks');
+                
                 // Render each artwork
                 for (const artwork of data.artworks) {
+                    console.log('Processing artwork:', artwork.slug);
+                    
                     // Check if the slug page exists
                     const isAvailable = await checkPageExists(artwork.slug);
+                    console.log(`${artwork.slug} available:`, isAvailable);
                     
                     const tile = document.createElement('div');
                     tile.className = `artwork-tile ${!isAvailable ? 'unavailable' : ''}`;
@@ -336,7 +357,7 @@
                 
             } catch (error) {
                 console.error('Error loading artworks:', error);
-                grid.innerHTML = '<div class="loading">Error loading artworks. Please try again later.</div>';
+                grid.innerHTML = `<div class="loading">Error loading artworks: ${error.message}<br>Check console for details.</div>`;
             }
         }
 
@@ -345,6 +366,7 @@
                 const response = await fetch(`/${slug}/`, { method: 'HEAD' });
                 return response.ok;
             } catch (error) {
+                console.error(`Error checking ${slug}:`, error);
                 return false;
             }
         }
