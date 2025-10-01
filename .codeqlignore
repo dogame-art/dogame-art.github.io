@@ -1,0 +1,10 @@
+# CodeQL ignore file - exclude third-party libraries from security scanning
+# These are vendored dependencies that we don't control
+
+# FontAwesome - third-party library with intentional property access patterns
+themes/default/fontawesome/**
+themes/**/fontawesome/**
+
+# Common excludes
+**/node_modules/**
+**/.git/**
