@@ -126,6 +126,58 @@ body {
     flex: 1;
 }
 
+/* Shake Animation Keyframes */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+
+/* Apply shake animation to Drip Haus button (last button) */
+.link-button:last-child {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-duration: 0.82s;
+    /* Wait 5 seconds between shakes */
+    animation-delay: 5s;
+}
+
+/* Alternative: Shake on a loop with pauses */
+@keyframes shakeWithPause {
+    0% {
+        transform: translateX(0);
+    }
+    2% {
+        transform: translateX(-10px);
+    }
+    4% {
+        transform: translateX(10px);
+    }
+    6% {
+        transform: translateX(-10px);
+    }
+    8% {
+        transform: translateX(10px);
+    }
+    10% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.link-button:last-child {
+    animation: shakeWithPause 6s ease-in-out infinite;
+}
+
 /* Snapshot Live Badge for Drip Haus (last button) - Only Monday-Friday */
 .link-button:last-child::after {
     content: "SNAPSHOT LIVE";
