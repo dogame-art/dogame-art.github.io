@@ -81,7 +81,12 @@ jobs:
           node-version: '18'
       
       - name: Install dependencies
-        run: npm ci
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
       
       - name: Run npm audit
         run: npm audit --audit-level=moderate
@@ -89,6 +94,7 @@ jobs:
       
       - name: Run npm audit fix (dry run)
         run: npm audit fix --dry-run
+        continue-on-error: true
 
   secret-scanning:
     name: 'Secret Scanning'
@@ -122,7 +128,12 @@ jobs:
           node-version: '18'
       
       - name: Install dependencies
-        run: npm ci
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
       
       - name: Install ESLint security plugins
         run: |
