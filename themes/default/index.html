@@ -49,7 +49,7 @@
                target="{{ link.link.target }}"
                title="{{ link.link.title }}"
                alt="{{ link.link.alt }}">
-                <i class="{{ link.link.icon }}"></i>
+                <i data-lucide="{{ link.link.icon }}"></i>
                 <span>{{ link.link.text }}</span>
             </a>
             {% endfor %}
@@ -62,7 +62,7 @@
                target="{{ social.social.target }}"
                title="{{ social.social.title }}"
                alt="{{ social.social.alt }}">
-                <i class="{{ social.social.icon }}"></i>
+                <i data-lucide="{{ social.social.icon }}"></i>
             </a>
             {% endfor %}
         </div>
@@ -73,8 +73,16 @@
         </div>
     </div>
     
-    <!-- Font Awesome -->
-    <script src="./fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+    <!-- Lucide Icons - Secure CDN with SRI -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"></script>
+    <script>
+        // Initialize Lucide icons after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+    </script>
     
     <!-- Weekday Detection for Snapshot Live Badge -->
     <script>
