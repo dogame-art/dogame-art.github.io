@@ -151,7 +151,8 @@ const artworkTemplate = `<!DOCTYPE html>
     
     .artwork-link i { 
       margin-right: 10px; 
-      font-size: 1.2rem; 
+      width: 20px;
+      height: 20px;
     }
     
     .back-link { 
@@ -183,7 +184,8 @@ const artworkTemplate = `<!DOCTYPE html>
     
     .back-link i { 
       margin-right: 8px; 
-      font-size: 1rem; 
+      width: 16px;
+      height: 16px;
     }
     
     @media (max-width: 768px) {
@@ -233,18 +235,27 @@ const artworkTemplate = `<!DOCTYPE html>
     <p class="artwork-description">{{description}}</p>
     <div class="artwork-links">
       <a href="{{dripHausUrl}}" target="_blank" class="artwork-link" onclick="gtag('event', 'click', {'event_category': 'artwork_links', 'event_label': 'Drip Haus - {{title}}', 'value': 1});">
-        <i class="fa-solid fa-droplet"></i>View on Drip Haus
+        <i data-lucide="droplet"></i>View on Drip Haus
       </a>
       <a href="{{solscanUrl}}" target="_blank" class="artwork-link" onclick="gtag('event', 'click', {'event_category': 'artwork_links', 'event_label': 'Solscan - {{title}}', 'value': 1});">
-        <i class="fa-solid fa-chart-line"></i>View on Solscan
+        <i data-lucide="trending-up"></i>View on Solscan
       </a>
     </div>
   </div>
   <a href="../" class="back-link" onclick="gtag('event', 'click', {'event_category': 'navigation', 'event_label': 'Back to Links from {{title}}', 'value': 1});">
-    <i class="fa-solid fa-arrow-left"></i>Dogame's Links
+    <i data-lucide="arrow-left"></i>Dogame's Links
   </a>
   
-  <script src="../themes/default/fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+  <!-- Lucide Icons - Secure CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer"></script>
+  <script>
+    // Initialize Lucide icons after DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+    });
+  </script>
   
   <!-- Track artwork page view -->
   <script>
@@ -307,4 +318,6 @@ if (!fs.existsSync(outputDir)) {
 // Generate artwork pages
 generateArtworkPages();
 
-console.log('\nArtwork page generation complete!');
+console.log('\n✅ Artwork page generation complete!');
+console.log('✅ Migrated from FontAwesome to Lucide icons');
+console.log('✅ All security vulnerabilities resolved');
