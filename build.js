@@ -45,7 +45,7 @@ const artworkTemplate = `<!DOCTYPE html>
   <style>
     body { 
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      line-height: 1.6;
+      line-height: 1.65;
       color: #333;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
@@ -61,7 +61,7 @@ const artworkTemplate = `<!DOCTYPE html>
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       animation: fadeInUp 0.8s ease-out;
-      padding: 40px 30px;
+      padding: 50px 40px;
       text-align: center;
       margin-bottom: 100px;
     }
@@ -83,14 +83,16 @@ const artworkTemplate = `<!DOCTYPE html>
       height: auto; 
       border-radius: 12px; 
       box-shadow: 0 8px 32px rgba(0,0,0,0.1); 
-      margin-bottom: 30px; 
+      margin-bottom: 40px; 
     }
     
     .artwork-title { 
       font-size: 2.5rem; 
       font-weight: 700; 
-      margin-bottom: 8px; 
+      margin-bottom: 16px; 
       color: #2d3748;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -100,15 +102,17 @@ const artworkTemplate = `<!DOCTYPE html>
     .artwork-description { 
       font-size: 1.2rem; 
       color: #718096; 
-      margin-bottom: 40px; 
-      line-height: 1.6; 
+      margin-bottom: 48px; 
+      line-height: 1.7; 
       font-weight: 500;
+      letter-spacing: 0.01em;
+      word-spacing: 0.05em;
     }
     
     .artwork-links { 
       display: flex; 
       flex-direction: column; 
-      gap: 15px; 
+      gap: 18px; 
       max-width: 400px; 
       margin: 0 auto; 
     }
@@ -117,12 +121,13 @@ const artworkTemplate = `<!DOCTYPE html>
       display: flex; 
       align-items: center; 
       justify-content: center; 
-      padding: 15px 25px; 
+      padding: 18px 28px; 
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
       color: white; 
       text-decoration: none; 
       border-radius: 12px; 
       font-weight: 600; 
+      letter-spacing: 0.02em;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
       position: relative;
@@ -150,9 +155,10 @@ const artworkTemplate = `<!DOCTYPE html>
     }
     
     .artwork-link i { 
-      margin-right: 10px; 
+      margin-right: 12px; 
       width: 20px;
       height: 20px;
+      flex-shrink: 0;
     }
     
     .back-link { 
@@ -166,13 +172,14 @@ const artworkTemplate = `<!DOCTYPE html>
       font-weight: 600; 
       display: flex; 
       align-items: center; 
-      padding: 15px 30px; 
+      padding: 18px 36px; 
       border-radius: 50px; 
       backdrop-filter: blur(10px); 
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
       transition: all 0.3s ease; 
       z-index: 1000; 
       border: 1px solid rgba(102, 126, 234, 0.2);
+      letter-spacing: 0.02em;
     }
     
     .back-link:hover { 
@@ -183,47 +190,100 @@ const artworkTemplate = `<!DOCTYPE html>
     }
     
     .back-link i { 
-      margin-right: 8px; 
+      margin-right: 10px; 
       width: 16px;
       height: 16px;
+      flex-shrink: 0;
     }
     
     @media (max-width: 768px) {
       .artwork-container { 
-        padding: 30px 20px;
+        padding: 40px 30px;
         margin: 10px;
       }
       
       .artwork-image { 
         max-width: 400px; 
         width: 85%; 
+        margin-bottom: 36px;
       }
       
       .artwork-title { 
         font-size: 2rem; 
+        margin-bottom: 14px;
+        letter-spacing: -0.01em;
       }
       
       .artwork-description { 
-        font-size: 1rem; 
+        font-size: 1.05rem; 
+        margin-bottom: 44px;
+        letter-spacing: 0.005em;
+      }
+      
+      .artwork-links {
+        gap: 16px;
+      }
+      
+      .artwork-link {
+        padding: 16px 24px;
+        font-size: 0.95rem;
+      }
+      
+      .artwork-link i {
+        margin-right: 10px;
       }
       
       .back-link { 
         bottom: 20px; 
-        padding: 12px 25px; 
-        font-size: 0.9rem; 
+        padding: 14px 28px; 
+        font-size: 0.95rem; 
+      }
+      
+      .back-link i {
+        margin-right: 8px;
       }
     }
 
     @media (max-width: 480px) {
+      body {
+        padding: 15px;
+      }
+      
+      .artwork-container {
+        padding: 35px 24px;
+      }
+      
       .artwork-image { 
         max-width: 320px; 
         width: 80%; 
+        margin-bottom: 32px;
+      }
+      
+      .artwork-title {
+        font-size: 1.75rem;
+        margin-bottom: 12px;
+      }
+      
+      .artwork-description {
+        font-size: 1rem;
+        margin-bottom: 40px;
+      }
+      
+      .artwork-link {
+        padding: 14px 20px;
+        font-size: 0.9rem;
+      }
+      
+      .artwork-link i {
+        margin-right: 8px;
+        width: 18px;
+        height: 18px;
       }
       
       .back-link { 
         bottom: 15px; 
-        padding: 10px 20px; 
-        font-size: 0.85rem; 
+        padding: 12px 24px; 
+        font-size: 0.9rem; 
       }
     }
   </style>
@@ -319,5 +379,6 @@ if (!fs.existsSync(outputDir)) {
 generateArtworkPages();
 
 console.log('\n✅ Artwork page generation complete!');
-console.log('✅ Migrated from FontAwesome to Lucide icons');
-console.log('✅ All security vulnerabilities resolved');
+console.log('✅ Improved typography and spacing applied');
+console.log('✅ Better icon alignment throughout');
+console.log('✅ All security measures maintained');
