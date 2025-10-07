@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     base64 (0.2.0)
-    bigdecimal (3.1.9)
+    bigdecimal (3.3.0)
     liquid (5.5.1)
     mini_portile2 (2.8.7)
     nokogiri (1.18.9)
