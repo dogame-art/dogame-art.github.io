@@ -1,378 +1,418 @@
-/* Reset and Base Styles */
+/* ==========================================================================
+   DOGAME.ART - IMPROVED HOMEPAGE STYLES
+   Better spacing between icons and text in link buttons
+   ========================================================================== */
+
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --text-primary: #333;
+  --text-secondary: #718096;
+  --bg-white: #ffffff;
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 30px rgba(102, 126, 234, 0.3);
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.65;
+  color: var(--text-primary);
+  background: var(--primary-gradient);
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
+/* ==========================================================================
+   CONTAINER
+   ========================================================================== */
+
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    animation: fadeInUp 0.8s ease-out;
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--bg-white);
+  border-radius: 20px;
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Profile Section */
-.profile-section {
-    text-align: center;
-    padding: 40px 30px 30px;
-    background: #ffffff;
+/* ==========================================================================
+   HEADER / PROFILE SECTION
+   ========================================================================== */
+
+.header {
+  padding: 60px 40px 40px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
 }
 
 .avatar {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    object-fit: cover;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  border: 4px solid rgba(102, 126, 234, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  display: block;
 }
 
 .name {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #2d3748;
-    margin-bottom: 8px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
 }
 
 .tagline {
-    font-size: 1.1rem;
-    color: #718096;
-    font-weight: 500;
-    line-height: 1.5;
-    max-width: 350px;
-    margin: 0 auto;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
-/* Links Section */
-.links-section {
-    padding: 30px;
+/* ==========================================================================
+   LINKS SECTION - IMPROVED ICON SPACING
+   ========================================================================== */
+
+.links {
+  padding: 40px;
+}
+
+.link-item {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.link-item:last-child {
+  margin-bottom: 0;
 }
 
 .link-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px 24px;
-    margin-bottom: 16px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    text-decoration: none;
-    border-radius: 16px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 18px 32px;
+  background: var(--primary-gradient);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-light);
+  position: relative;
+  overflow: hidden;
 }
 
 .link-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
 }
 
 .link-button:hover::before {
-    left: 100%;
+  left: 100%;
 }
 
 .link-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
 }
 
-.link-button i {
-    margin-right: 12px;
-    font-size: 1.2rem;
-    width: 20px;
-    text-align: center;
+.link-button:active {
+  transform: translateY(-1px);
 }
 
-.link-button span {
-    flex: 1;
+/* IMPROVED ICON SPACING - THE KEY FIX */
+.link-button i,
+.link-button svg {
+  margin-right: 14px; /* Increased from typical 8-10px */
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Shake Animation Keyframes */
-@keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    10%, 30%, 50%, 70%, 90% {
-        transform: translateX(-10px);
-    }
-    20%, 40%, 60%, 80% {
-        transform: translateX(10px);
-    }
+/* Extra spacing for better visual balance */
+.link-text {
+  display: inline-block;
+  margin-left: 2px; /* Small additional nudge */
 }
 
-/* Apply shake animation to Drip Haus button (last button) */
-.link-button:last-child {
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-    animation-delay: 2s;
-    animation-iteration-count: infinite;
-    animation-duration: 0.82s;
-    /* Wait 5 seconds between shakes */
-    animation-delay: 5s;
+/* ==========================================================================
+   SOCIAL ICONS - IMPROVED SPACING
+   ========================================================================== */
+
+.socials {
+  padding: 30px 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
 }
 
-/* Alternative: Shake on a loop with pauses */
-@keyframes shakeWithPause {
-    0% {
-        transform: translateX(0);
-    }
-    2% {
-        transform: translateX(-10px);
-    }
-    4% {
-        transform: translateX(10px);
-    }
-    6% {
-        transform: translateX(-10px);
-    }
-    8% {
-        transform: translateX(10px);
-    }
-    10% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-.link-button:last-child {
-    animation: shakeWithPause 6s ease-in-out infinite;
-}
-
-/* Snapshot Live Badge for Drip Haus (last button) - Only Monday-Friday */
-.link-button:last-child::after {
-    content: "SNAPSHOT LIVE";
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    background: #ff0000;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-    animation: glow 2s ease-in-out infinite alternate;
-    letter-spacing: 0.5px;
-    z-index: 10;
-    display: none; /* Hidden by default */
-}
-
-/* Show badge only on weekdays */
-.weekday .link-button:last-child::after {
-    display: block;
-}
-
-@keyframes glow {
-    from {
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
-    }
-    to {
-        box-shadow: 0 0 20px rgba(255, 0, 0, 0.9), 0 0 30px rgba(255, 0, 0, 0.5);
-    }
-}
-
-/* Socials Section */
-.socials-section {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px 30px;
-    background: #ffffff;
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Increased from typical 16px */
+  flex-wrap: wrap;
 }
 
 .social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background: white;
-    color: #667eea;
-    text-decoration: none;
-    border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  color: #667eea;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 12px; /* Added padding for better icon centering */
 }
 
 .social-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-    color: #764ba2;
+  background: var(--primary-gradient);
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
 }
 
-.social-link i {
-    font-size: 1.3rem;
+.social-link i,
+.social-link svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
 }
 
-/* Footer Section */
-.footer-section {
-    text-align: center;
-    padding: 30px;
-    background: #ffffff;
-    border-top: 1px solid #e2e8f0;
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.footer {
+  padding: 30px 40px;
+  text-align: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .footer-text {
-    font-size: 1rem;
-    color: #718096;
-    margin-bottom: 15px;
-    font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+  letter-spacing: 0.01em;
 }
 
 .copyright {
-    font-size: 0.9rem;
-    color: #a0aec0;
+  font-size: 0.85rem;
+  color: #a0aec0;
+  letter-spacing: 0.01em;
 }
 
-.copyright a {
-    color: #667eea;
-    text-decoration: none;
-    font-weight: 600;
-}
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
 
-.copyright a:hover {
-    color: #764ba2;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    
-    .container {
-        border-radius: 16px;
-    }
-    
-    .profile-section {
-        padding: 30px 20px 20px;
-    }
-    
-    .avatar {
-        width: 160px;
-        height: 160px;
-    }
-    
-    .name {
-        font-size: 1.8rem;
-    }
-    
-    .tagline {
-        font-size: 1rem;
-        max-width: 300px;
-    }
-    
-    .links-section {
-        padding: 20px;
-    }
-    
-    .link-button {
-        padding: 16px 20px;
-        font-size: 1rem;
-    }
-    
-    .weekday .link-button:last-child::after {
-        font-size: 0.6rem;
-        padding: 3px 6px;
-        right: 10px;
-    }
-    
-    .socials-section {
-        padding: 15px 20px;
-        gap: 15px;
-    }
-    
-    .social-link {
-        width: 45px;
-        height: 45px;
-    }
-    
-    .social-link i {
-        font-size: 1.2rem;
-    }
-    
-    .footer-section {
-        padding: 20px;
-    }
+  body {
+    padding: 20px 15px;
+  }
+
+  .container {
+    border-radius: 16px;
+  }
+
+  .header {
+    padding: 50px 30px 30px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+
+  .name {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+  }
+
+  .tagline {
+    font-size: 1rem;
+  }
+
+  .links {
+    padding: 30px 24px;
+  }
+
+  .link-button {
+    padding: 16px 28px;
+    font-size: 1rem;
+  }
+
+  /* Maintain good icon spacing on mobile */
+  .link-button i,
+  .link-button svg {
+    margin-right: 12px; /* Slightly less on mobile but still generous */
+    width: 18px;
+    height: 18px;
+  }
+
+  .socials {
+    padding: 24px 30px;
+  }
+
+  .social-links {
+    gap: 16px;
+  }
+
+  .social-link {
+    width: 46px;
+    height: 46px;
+  }
+
+  .footer {
+    padding: 24px 30px;
+  }
 }
 
 @media (max-width: 480px) {
-    .profile-section {
-        padding: 25px 15px 15px;
-    }
-    
-    .avatar {
-        width: 140px;
-        height: 140px;
-    }
-    
-    .name {
-        font-size: 1.5rem;
-    }
-    
-    .tagline {
-        font-size: 0.95rem;
-        max-width: 260px;
-    }
-    
-    .links-section {
-        padding: 15px;
-    }
-    
-    .link-button {
-        padding: 14px 16px;
-        font-size: 0.95rem;
-    }
-    
-    .link-button i {
-        margin-right: 10px;
-        font-size: 1.1rem;
-    }
-    
-    .weekday .link-button:last-child::after {
-        font-size: 0.55rem;
-        padding: 2px 5px;
-        right: 8px;
-    }
+  body {
+    padding: 15px 10px;
+  }
+
+  .header {
+    padding: 40px 24px 24px;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .name {
+    font-size: 1.5rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+  }
+
+  .links {
+    padding: 24px 20px;
+  }
+
+  .link-item {
+    margin-bottom: 14px;
+  }
+
+  .link-button {
+    padding: 14px 24px;
+    font-size: 0.95rem;
+  }
+
+  /* Still maintain decent spacing on small screens */
+  .link-button i,
+  .link-button svg {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .socials {
+    padding: 20px 24px;
+  }
+
+  .social-links {
+    gap: 14px;
+  }
+
+  .social-link {
+    width: 44px;
+    height: 44px;
+  }
+
+  .social-link i,
+  .social-link svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer {
+    padding: 20px 24px;
+  }
+
+  .footer-text {
+    font-size: 0.9rem;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+  }
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .container {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .link-button::before {
+    display: none;
+  }
+
+  .link-button:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
