@@ -4,8 +4,8 @@ GEM
     base64 (0.2.0)
     bigdecimal (3.1.9)
     liquid (5.5.1)
-    mini_portile2 (2.8.7)
-    nokogiri (1.18.5)
+    mini_portile2 (2.8.9)
+    nokogiri (1.18.9)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     racc (1.8.1)
@@ -18,7 +18,7 @@ DEPENDENCIES
   base64
   bigdecimal
   liquid (~> 5.5)
-  nokogiri (>= 1.18.4)
+  nokogiri (>= 1.18.9)
   yaml (~> 0.3)
 
 BUNDLED WITH
