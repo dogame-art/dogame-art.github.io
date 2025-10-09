@@ -32,6 +32,16 @@ artworks:
     solscan_url: "https://solscan.io"
     twitter_share_url: "https://twitter.com/dogame_"
     published: true
+
+  - slug: "FlowerPower"
+    title: "Flower Power"
+    image: "art/FlowerPower.jpg"
+    description: "Power from beauty "
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame/collectible/2025-art-flower-power-0019e4ee"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: true
     
   - slug: "ChickenHead"
     title: "Chicken Head"
