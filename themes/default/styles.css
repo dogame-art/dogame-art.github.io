@@ -1,6 +1,6 @@
 /* ==========================================================================
-   DOGAME.ART - IMPROVED HOMEPAGE STYLES
-   Better spacing between icons and text in link buttons
+   DOGAME.ART - IMPROVED LEFT-ALIGNED LAYOUT
+   Modern, spacious design with better typography
    ========================================================================== */
 
 * {
@@ -11,31 +11,36 @@
 
 :root {
   --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --text-primary: #333;
-  --text-secondary: #718096;
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
   --bg-white: #ffffff;
-  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
-  --shadow-hover: 0 8px 30px rgba(102, 126, 234, 0.3);
+  --bg-light: #f7fafc;
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 30px rgba(102, 126, 234, 0.25);
 }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--text-primary);
   background: var(--primary-gradient);
   min-height: 100vh;
-  padding: 40px 20px;
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ==========================================================================
-   CONTAINER
+   CONTAINER - Modern Card Layout
    ========================================================================== */
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 680px;
+  width: 100%;
   background: var(--bg-white);
-  border-radius: 20px;
+  border-radius: 24px;
   box-shadow: var(--shadow-light);
   overflow: hidden;
   animation: fadeInUp 0.8s ease-out;
@@ -53,72 +58,73 @@ body {
 }
 
 /* ==========================================================================
-   HEADER / PROFILE SECTION
+   PROFILE SECTION - Left Aligned
    ========================================================================== */
 
-.header {
-  padding: 60px 40px 40px;
-  text-align: center;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+.profile-section {
+  padding: 50px 50px 40px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  margin: 0 auto 24px;
-  border: 4px solid rgba(102, 126, 234, 0.2);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  display: block;
+  border: 3px solid rgba(102, 126, 234, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex: 1;
+  padding-top: 8px;
 }
 
 .name {
   font-size: 2rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 12px;
-  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .tagline {
   font-size: 1.1rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  letter-spacing: 0.01em;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  font-weight: 500;
 }
 
 /* ==========================================================================
-   LINKS SECTION - IMPROVED ICON SPACING
+   LINKS SECTION - Evenly Spaced Pills
    ========================================================================== */
 
-.links {
-  padding: 40px;
-}
-
-.link-item {
-  display: block;
-  margin-bottom: 16px;
-}
-
-.link-item:last-child {
-  margin-bottom: 0;
+.links-section {
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .link-button {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
   padding: 18px 32px;
   background: var(--primary-gradient);
   color: white;
   text-decoration: none;
-  border-radius: 50px;
+  border-radius: 12px;
   font-weight: 600;
   font-size: 1.05rem;
-  letter-spacing: 0.02em;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-light);
+  letter-spacing: 0.01em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
   position: relative;
   overflow: hidden;
 }
@@ -139,67 +145,61 @@ body {
 }
 
 .link-button:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.35);
 }
 
 .link-button:active {
-  transform: translateY(-1px);
+  transform: translateX(2px);
 }
 
-/* IMPROVED ICON SPACING - THE KEY FIX */
 .link-button i,
 .link-button svg {
-  margin-right: 14px; /* Increased from typical 8-10px */
-  width: 20px;
-  height: 20px;
+  margin-right: 14px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
-/* Extra spacing for better visual balance */
-.link-text {
-  display: inline-block;
-  margin-left: 2px; /* Small additional nudge */
+.link-button span {
+  flex: 1;
 }
 
 /* ==========================================================================
-   SOCIAL ICONS - IMPROVED SPACING
+   SOCIALS SECTION - Centered at Bottom
    ========================================================================== */
 
-.socials {
-  padding: 30px 40px;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  text-align: center;
+.socials-section {
+  padding: 30px 50px 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .social-links {
   display: flex;
+  gap: 20px;
   justify-content: center;
-  gap: 20px; /* Increased from typical 16px */
-  flex-wrap: wrap;
 }
 
 .social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
   color: #667eea;
   text-decoration: none;
   transition: all 0.3s ease;
-  padding: 12px; /* Added padding for better icon centering */
 }
 
 .social-link:hover {
   background: var(--primary-gradient);
   color: white;
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
 }
 
@@ -211,21 +211,22 @@ body {
 }
 
 /* ==========================================================================
-   FOOTER
+   FOOTER SECTION
    ========================================================================== */
 
-.footer {
-  padding: 30px 40px;
+.footer-section {
+  padding: 30px 50px 40px;
   text-align: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: var(--bg-light);
 }
 
 .footer-text {
   font-size: 0.95rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 12px;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
 }
 
 .copyright {
@@ -240,34 +241,41 @@ body {
 
 @media (max-width: 768px) {
   body {
-    padding: 20px 15px;
+    padding: 30px 15px;
   }
 
   .container {
-    border-radius: 16px;
+    border-radius: 20px;
   }
 
-  .header {
-    padding: 50px 30px 30px;
+  .profile-section {
+    padding: 40px 35px 30px;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
   }
 
   .avatar {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
+    width: 90px;
+    height: 90px;
+  }
+
+  .profile-info {
+    padding-top: 0;
   }
 
   .name {
     font-size: 1.75rem;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
 
   .tagline {
     font-size: 1rem;
   }
 
-  .links {
-    padding: 30px 24px;
+  .links-section {
+    padding: 30px 35px;
+    gap: 12px;
   }
 
   .link-button {
@@ -275,16 +283,86 @@ body {
     font-size: 1rem;
   }
 
-  /* Maintain good icon spacing on mobile */
   .link-button i,
   .link-button svg {
-    margin-right: 12px; /* Slightly less on mobile but still generous */
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .socials-section {
+    padding: 24px 35px 32px;
+  }
+
+  .social-links {
+    gap: 18px;
+  }
+
+  .social-link {
+    width: 48px;
+    height: 48px;
+  }
+
+  .footer-section {
+    padding: 24px 35px 32px;
+  }
+
+  .footer-text {
+    font-size: 0.9rem;
+  }
+
+  .copyright {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .container {
+    border-radius: 16px;
+  }
+
+  .profile-section {
+    padding: 35px 28px 25px;
+    gap: 18px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .name {
+    font-size: 1.6rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+  }
+
+  .links-section {
+    padding: 25px 28px;
+    gap: 12px;
+  }
+
+  .link-button {
+    padding: 14px 24px;
+    font-size: 0.95rem;
+    border-radius: 10px;
+  }
+
+  .link-button i,
+  .link-button svg {
+    margin-right: 10px;
     width: 18px;
     height: 18px;
   }
 
-  .socials {
-    padding: 24px 30px;
+  .socials-section {
+    padding: 20px 28px 28px;
   }
 
   .social-links {
@@ -296,83 +374,22 @@ body {
     height: 46px;
   }
 
-  .footer {
-    padding: 24px 30px;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    padding: 15px 10px;
-  }
-
-  .header {
-    padding: 40px 24px 24px;
-  }
-
-  .avatar {
-    width: 90px;
-    height: 90px;
-  }
-
-  .name {
-    font-size: 1.5rem;
-  }
-
-  .tagline {
-    font-size: 0.95rem;
-  }
-
-  .links {
-    padding: 24px 20px;
-  }
-
-  .link-item {
-    margin-bottom: 14px;
-  }
-
-  .link-button {
-    padding: 14px 24px;
-    font-size: 0.95rem;
-  }
-
-  /* Still maintain decent spacing on small screens */
-  .link-button i,
-  .link-button svg {
-    margin-right: 10px;
-    width: 18px;
-    height: 18px;
-  }
-
-  .socials {
-    padding: 20px 24px;
-  }
-
-  .social-links {
-    gap: 14px;
-  }
-
-  .social-link {
-    width: 44px;
-    height: 44px;
-  }
-
   .social-link i,
   .social-link svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 
-  .footer {
-    padding: 20px 24px;
+  .footer-section {
+    padding: 20px 28px 28px;
   }
 
   .footer-text {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
 
   .copyright {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
 }
 
