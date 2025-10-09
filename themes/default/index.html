@@ -36,12 +36,16 @@
 </head>
 <body>
     <div class="container">
+        <!-- Profile Section - Left Aligned with Avatar -->
         <div class="profile-section">
             <img src="{{ avatar }}" alt="{{ name }}" class="avatar" />
-            <h1 class="name">{{ name }}</h1>
-            <p class="tagline">{{ tagline }}</p>
+            <div class="profile-info">
+                <h1 class="name">{{ name }}</h1>
+                <p class="tagline">{{ tagline }}</p>
+            </div>
         </div>
         
+        <!-- Links Section - Evenly Spaced Pills -->
         <div class="links-section">
             {% for link in links %}
             <a href="{{ link.link.url }}" 
@@ -55,25 +59,29 @@
             {% endfor %}
         </div>
         
+        <!-- Socials Section - Centered Circles -->
         <div class="socials-section">
-            {% for social in socials %}
-            <a href="{{ social.social.url }}" 
-               class="social-link" 
-               target="{{ social.social.target }}"
-               title="{{ social.social.title }}"
-               alt="{{ social.social.alt }}">
-                <i data-lucide="{{ social.social.icon }}"></i>
-            </a>
-            {% endfor %}
+            <div class="social-links">
+                {% for social in socials %}
+                <a href="{{ social.social.url }}" 
+                   class="social-link" 
+                   target="{{ social.social.target }}"
+                   title="{{ social.social.title }}"
+                   alt="{{ social.social.alt }}">
+                    <i data-lucide="{{ social.social.icon }}"></i>
+                </a>
+                {% endfor %}
+            </div>
         </div>
         
+        <!-- Footer Section -->
         <div class="footer-section">
             <p class="footer-text">{{ footer }}</p>
             <p class="copyright">{{ copyright }}</p>
         </div>
     </div>
     
-    <!-- Lucide Icons - Secure CDN with SRI -->
+    <!-- Lucide Icons - Secure CDN -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" 
             crossorigin="anonymous" 
             referrerpolicy="no-referrer"></script>
@@ -82,18 +90,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
         });
-    </script>
-    
-    <!-- Weekday Detection for Snapshot Live Badge -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const today = new Date().getDay();
-        const isWeekday = today >= 1 && today <= 5;
-        
-        if (isWeekday) {
-            document.body.classList.add('weekday');
-        }
-    });
     </script>
     
     <!-- Custom Click Tracking -->
