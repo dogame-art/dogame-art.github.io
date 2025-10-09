@@ -1,126 +1,131 @@
 <!DOCTYPE html>
-<html lang="{{ lang }}">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    
-    <!-- SEO Meta Tags -->
+    <title>{{ name }} - {{ tagline }}</title>
     <meta name="description" content="{{ tagline }}">
-    <meta property="og:title" content="{{ title }}" />
-    <meta property="og:description" content="{{ tagline }}" />
-    <meta property="og:image" content="{{ avatar }}" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:image" content="{{ avatar }}" />
-    <meta property="twitter:title" content="{{ title }}" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ name }}">
+    <meta property="og:description" content="{{ tagline }}">
+    <meta property="og:image" content="{{ avatar }}">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="./images/favicons/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
-    <link rel="apple-touch-icon" href="./images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" href="{{ avatar }}">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="styles.css">
     
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    {% if analytics_enabled %}
     <!-- Google Analytics -->
-    {% if google_analytics_id %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ analytics_id }}"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '{{ google_analytics_id }}');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ analytics_id }}');
     </script>
     {% endif %}
 </head>
 <body>
     <div class="container">
-        <!-- Profile Section - Left Aligned with Avatar -->
+        <!-- Profile Section -->
         <div class="profile-section">
-            <img src="{{ avatar }}" alt="{{ name }}" class="avatar" />
+            <img src="{{ avatar }}" alt="{{ name }}" class="avatar">
             <div class="profile-info">
                 <h1 class="name">{{ name }}</h1>
                 <p class="tagline">{{ tagline }}</p>
             </div>
         </div>
-        
-        <!-- Links Section - Evenly Spaced Pills -->
+
+        <!-- Links Section -->
         <div class="links-section">
             {% for link in links %}
-            <a href="{{ link.link.url }}" 
-               class="link-button" 
-               target="{{ link.link.target }}"
-               title="{{ link.link.title }}"
-               alt="{{ link.link.alt }}">
-                <i data-lucide="{{ link.link.icon }}"></i>
-                <span>{{ link.link.text }}</span>
+            <a href="{{ link.url }}" class="link-button" target="_blank" rel="noopener noreferrer">
+                {% if link.icon %}
+                <i data-lucide="{{ link.icon }}"></i>
+                {% endif %}
+                <span>{{ link.text }}</span>
             </a>
             {% endfor %}
         </div>
-        
-        <!-- Socials Section - Centered Circles -->
+
+        <!-- Social Media Section -->
         <div class="socials-section">
             <div class="social-links">
                 {% for social in socials %}
-                <a href="{{ social.social.url }}" 
-                   class="social-link" 
-                   target="{{ social.social.target }}"
-                   title="{{ social.social.title }}"
-                   alt="{{ social.social.alt }}">
-                    <i data-lucide="{{ social.social.icon }}"></i>
+                <a href="{{ social.url }}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="{{ social.platform }}">
+                    <i data-lucide="{{ social.icon }}"></i>
                 </a>
                 {% endfor %}
             </div>
         </div>
-        
+
         <!-- Footer Section -->
         <div class="footer-section">
-            <p class="footer-text">{{ footer }}</p>
+            <p class="footer-text">{{ footer_text }}</p>
             <p class="copyright">{{ copyright }}</p>
         </div>
     </div>
-    
-    <!-- Lucide Icons - Secure CDN -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" 
-            crossorigin="anonymous" 
-            referrerpolicy="no-referrer"></script>
+
+    <!-- Initialize Lucide Icons -->
     <script>
-        // Initialize Lucide icons after DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            lucide.createIcons();
-        });
+        lucide.createIcons();
     </script>
-    
-    <!-- Custom Click Tracking -->
-    {% if google_analytics_id %}
+
+    <!-- Weekday Detector for Driphaus Badge -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Track main link button clicks
-        document.querySelectorAll('.link-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const linkText = this.querySelector('span').textContent;
-                gtag('event', 'click', {
-                    'event_category': 'social_links',
-                    'event_label': linkText,
-                    'value': 1
-                });
-            });
-        });
+    (function() {
+      'use strict';
+      
+      /**
+       * Check if today is a weekday (Monday-Friday)
+       * @returns {boolean} True if Monday-Friday, false if Saturday-Sunday
+       */
+      function isWeekday() {
+        const today = new Date();
+        const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, ... 6 = Saturday
         
-        // Track social icon clicks
-        document.querySelectorAll('.social-link').forEach(link => {
-            link.addEventListener('click', function() {
-                const linkTitle = this.getAttribute('title');
-                gtag('event', 'click', {
-                    'event_category': 'social_icons',
-                    'event_label': linkTitle,
-                    'value': 1
-                });
-            });
-        });
-    });
+        // Returns true for Monday (1) through Friday (5)
+        return dayOfWeek >= 1 && dayOfWeek <= 5;
+      }
+      
+      /**
+       * Add or remove 'weekday' class from body
+       */
+      function updateWeekdayClass() {
+        const body = document.body;
+        
+        if (isWeekday()) {
+          // It's Monday-Friday - add the weekday class
+          body.classList.add('weekday');
+          console.log('✓ Weekday detected - SNAPSHOT ACTIVE badge enabled');
+        } else {
+          // It's Saturday-Sunday - remove the weekday class
+          body.classList.remove('weekday');
+          console.log('✓ Weekend detected - SNAPSHOT ACTIVE badge disabled');
+        }
+      }
+      
+      // Run immediately when script loads
+      updateWeekdayClass();
+      
+      // Also update at midnight if the page is still open
+      // Check every minute to catch the day change
+      setInterval(function() {
+        const now = new Date();
+        // If it's midnight (00:00), update the class
+        if (now.getHours() === 0 && now.getMinutes() === 0) {
+          updateWeekdayClass();
+        }
+      }, 60000); // Check every minute
+      
+    })();
     </script>
-    {% endif %}
 </body>
 </html>
