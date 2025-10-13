@@ -53,17 +53,17 @@ jobs:
           fetch-depth: 0
       
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@e2b3eafc8d227b0241d48be5f425d47c2d750a13 # v3.26.10
+        uses: github/codeql-action/init@f443b600d91635bebf5b0d9ebc620189c0d6fba5 # v4.30.8
         with:
           languages: javascript
           # Use security-and-quality suite for comprehensive coverage
           queries: security-and-quality
       
       - name: Autobuild
-        uses: github/codeql-action/autobuild@e2b3eafc8d227b0241d48be5f425d47c2d750a13 # v3.26.10
+        uses: github/codeql-action/autobuild@f443b600d91635bebf5b0d9ebc620189c0d6fba5 # v4.30.8
       
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@e2b3eafc8d227b0241d48be5f425d47c2d750a13 # v3.26.10
+        uses: github/codeql-action/analyze@f443b600d91635bebf5b0d9ebc620189c0d6fba5 # v4.30.8
         with:
           category: "/language:javascript"
 
