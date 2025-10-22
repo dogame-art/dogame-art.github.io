@@ -1,0 +1,92 @@
+# ============================================
+# DOGAME NFT STORE CONFIGURATION
+# ============================================
+# This file configures which artworks are available for minting
+
+# Store Settings
+store_enabled: true
+treasury_wallet: "PLACEHOLDER_TREASURY_WALLET_HERE" # Set this to your actual treasury wallet
+royalty_percentage: 5 # Percentage of secondary sales
+
+# Network
+network: "devnet" # devnet or mainnet-beta
+
+# Artworks Available for Minting
+# Each artwork needs to be uploaded to IPFS before enabling
+artworks:
+  # 1/1 Artworks (Single edition)
+  - slug: "FlowerPower"
+    title: "Flower Power"
+    description: "Power from beauty - A unique 1/1 digital artwork"
+    image: "art/FlowerPower.jpg"
+    type: "1of1" # One of one
+    price_sol: 0.1 # Price in SOL
+    max_supply: 1 # Always 1 for 1/1s
+    minted_count: 0
+    available: true
+    ipfs_metadata_uri: "" # Fill this after running upload-to-ipfs script
+    ipfs_image_uri: ""
+    collection_address: null
+
+  - slug: "PortalOverflow"
+    title: "Portal Overflow"
+    description: "Sometimes the unknown is meant to stay that way - 1/1 NFT"
+    image: "art/PortalOverflow.jpeg"
+    type: "1of1"
+    price_sol: 0.15
+    max_supply: 1
+    minted_count: 0
+    available: true
+    ipfs_metadata_uri: ""
+    ipfs_image_uri: ""
+    collection_address: null
+
+  # Edition Artworks (Limited or open editions)
+  - slug: "WindowShopping"
+    title: "Window Shopping"
+    description: "Sometimes it is nice to look at it before you buy it - Limited edition of 100"
+    image: "art/image9.jpeg"
+    type: "edition"
+    price_sol: 0.05
+    max_supply: 100 # Set to null for open edition
+    minted_count: 0
+    available: true
+    ipfs_metadata_uri: ""
+    ipfs_image_uri: ""
+    collection_address: null
+
+  # Example: Coming Soon Artwork (disabled)
+  - slug: "ChickenHead"
+    title: "Chicken Head"
+    description: "A unique vision waiting to be revealed"
+    image: "art/ChickenHead.jpeg"
+    type: "1of1"
+    price_sol: 0.2
+    max_supply: 1
+    minted_count: 0
+    available: false # Set to true when ready to sell
+    ipfs_metadata_uri: ""
+    ipfs_image_uri: ""
+    collection_address: null
+
+# ============================================
+# INSTRUCTIONS FOR ADDING NEW ARTWORKS
+# ============================================
+#
+# To add a new artwork for sale:
+#
+# 1. Add the artwork entry above with all details
+# 2. Upload the artwork to IPFS:
+#    npm run upload:ipfs -- --artwork SLUG_NAME
+# 3. The script will update ipfs_metadata_uri and ipfs_image_uri
+# 4. Set available: true
+# 5. Deploy to production
+#
+# Artwork Types:
+#   - 1of1: Single edition (max_supply: 1)
+#   - edition: Multiple editions (set max_supply or null for open)
+#
+# Price Guidelines:
+#   - 1/1s: 0.1 - 1 SOL
+#   - Limited editions: 0.05 - 0.2 SOL
+#   - Open editions: 0.01 - 0.05 SOL
