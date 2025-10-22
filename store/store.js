@@ -14,10 +14,9 @@ let selectedArtwork = null;
 const API_BASE_URL = window.location.origin;
 
 // Solana network configuration
-const NETWORK = 'devnet'; // Change to 'mainnet-beta' for production
-const RPC_ENDPOINT = NETWORK === 'devnet'
-  ? 'https://api.devnet.solana.com'
-  : 'https://api.mainnet-beta.solana.com';
+// This will be read from the API at runtime
+let NETWORK = 'devnet'; // Default to devnet
+let RPC_ENDPOINT = 'https://api.devnet.solana.com';
 
 // Treasury wallet (will be fetched from config or set in env)
 let TREASURY_WALLET = null;
@@ -27,6 +26,9 @@ let TREASURY_WALLET = null;
  */
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('Initializing NFT Store...');
+
+  // Detect network from environment or default to devnet
+  await detectNetwork();
 
   // Initialize Solana connection
   connection = new solanaWeb3.Connection(RPC_ENDPOINT, 'confirmed');
@@ -40,6 +42,54 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Check if wallet was previously connected
   await checkWalletConnection();
 });
+
+/**
+ * Detect which network we're on
+ */
+async function detectNetwork() {
+  try {
+    // Try to get network info from API
+    const response = await fetch(`${API_BASE_URL}/api/get-artworks`);
+    const data = await response.json();
+
+    // Check if API returned network info (we'll add this later)
+    // For now, check RPC endpoint or default to devnet
+    const urlParams = new URLSearchParams(window.location.search);
+    const networkParam = urlParams.get('network');
+
+    if (networkParam === 'mainnet' || networkParam === 'mainnet-beta') {
+      NETWORK = 'mainnet-beta';
+      RPC_ENDPOINT = 'https://api.mainnet-beta.solana.com';
+    } else {
+      NETWORK = 'devnet';
+      RPC_ENDPOINT = 'https://api.devnet.solana.com';
+    }
+
+    // Update UI
+    updateNetworkIndicator();
+  } catch (error) {
+    console.warn('Could not detect network, defaulting to devnet');
+    updateNetworkIndicator();
+  }
+}
+
+/**
+ * Update network indicator UI
+ */
+function updateNetworkIndicator() {
+  const indicator = document.getElementById('network-indicator');
+  const text = document.getElementById('network-text');
+
+  if (NETWORK === 'mainnet-beta') {
+    indicator.className = 'network-indicator mainnet';
+    indicator.querySelector('.network-indicator-icon').textContent = '🟢';
+    text.textContent = 'MAINNET';
+  } else {
+    indicator.className = 'network-indicator devnet';
+    indicator.querySelector('.network-indicator-icon').textContent = '🧪';
+    text.textContent = 'DEVNET MODE';
+  }
+}
 
 /**
  * Set up event listeners

@@ -610,6 +610,41 @@ body {
 }
 
 /* ==========================================================================
+   NETWORK INDICATOR
+   ========================================================================== */
+
+.network-indicator {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.network-indicator.devnet {
+  background: #fed7d7;
+  color: #c53030;
+  border: 2px solid #fc8181;
+}
+
+.network-indicator.mainnet {
+  background: #c6f6d5;
+  color: #22543d;
+  border: 2px solid #48bb78;
+}
+
+.network-indicator-icon {
+  font-size: 14px;
+}
+
+/* ==========================================================================
    RESPONSIVE
    ========================================================================== */
 

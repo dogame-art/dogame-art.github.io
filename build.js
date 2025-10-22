@@ -378,7 +378,52 @@ if (!fs.existsSync(outputDir)) {
 // Generate artwork pages
 generateArtworkPages();
 
+// Copy store folder to output
+const storeSrc = path.join(__dirname, 'store');
+const storeDest = path.join(outputDir, 'store');
+if (fs.existsSync(storeSrc)) {
+    // Copy store directory
+    if (fs.existsSync(storeDest)) {
+        fs.rmSync(storeDest, { recursive: true });
+    }
+    fs.mkdirSync(storeDest, { recursive: true });
+
+    // Copy all files in store/
+    const storeFiles = fs.readdirSync(storeSrc);
+    storeFiles.forEach(file => {
+        const srcFile = path.join(storeSrc, file);
+        const destFile = path.join(storeDest, file);
+        if (fs.statSync(srcFile).isFile()) {
+            fs.copyFileSync(srcFile, destFile);
+        }
+    });
+    console.log('✅ Store folder copied to _output/store/');
+}
+
+// Copy art folder to output (needed for images)
+const artSrc = path.join(__dirname, 'art');
+const artDest = path.join(outputDir, 'art');
+if (fs.existsSync(artSrc)) {
+    if (fs.existsSync(artDest)) {
+        fs.rmSync(artDest, { recursive: true });
+    }
+    fs.cpSync(artSrc, artDest, { recursive: true });
+    console.log('✅ Art folder copied to _output/art/');
+}
+
+// Copy themes folder to output (needed for CSS)
+const themesSrc = path.join(__dirname, 'themes');
+const themesDest = path.join(outputDir, 'themes');
+if (fs.existsSync(themesSrc)) {
+    if (fs.existsSync(themesDest)) {
+        fs.rmSync(themesDest, { recursive: true });
+    }
+    fs.cpSync(themesSrc, themesDest, { recursive: true });
+    console.log('✅ Themes folder copied to _output/themes/');
+}
+
 console.log('\n✅ Artwork page generation complete!');
 console.log('✅ Improved typography and spacing applied');
 console.log('✅ Better icon alignment throughout');
 console.log('✅ All security measures maintained');
+console.log('✅ Static assets copied to output directory');
