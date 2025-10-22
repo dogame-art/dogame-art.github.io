@@ -5,8 +5,8 @@
 
 # Store Settings
 store_enabled: true
-treasury_wallet: "PLACEHOLDER_TREASURY_WALLET_HERE" # Set this to your actual treasury wallet
-royalty_percentage: 5 # Percentage of secondary sales
+treasury_wallet: 5yUaB1ULiYsUbb6Qaxd9rUcKb85VomvhyoTQowEJi7Jj # Set this to your actual treasury wallet
+royalty_percentage: 10 # Percentage of secondary sales
 
 # Network
 network: "devnet" # devnet or mainnet-beta
