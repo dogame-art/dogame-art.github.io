@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dogame NFT Store | Mint Original Artwork</title>
+  <meta name="description" content="Mint exclusive NFTs from Dogame's art collection on Solana">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Solana Wallet Adapter CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/@solana/wallet-adapter-react-ui@0.9.35/styles.css">
+</head>
+<body>
+  <div class="store-container">
+    <!-- Header -->
+    <header class="store-header">
+      <div class="header-content">
+        <div class="header-left">
+          <a href="/" class="back-link">ê Back to Home</a>
+          <h1 class="store-title">NFT Store</h1>
+          <p class="store-subtitle">Mint exclusive digital artwork on Solana</p>
+        </div>
+        <div class="header-right">
+          <button id="connect-wallet-btn" class="wallet-btn">
+            <span id="wallet-text">Connect Wallet</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All NFTs</button>
+      <button class="filter-tab" data-filter="1of1">1/1s</button>
+      <button class="filter-tab" data-filter="edition">Editions</button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading-state" class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading artworks...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-state" class="error-state" style="display: none;">
+      <p id="error-message">Failed to load artworks</p>
+      <button onclick="location.reload()">Retry</button>
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="empty-state" style="display: none;">
+      <p>No artworks available yet</p>
+      <a href="/">Return Home</a>
+    </div>
+
+    <!-- NFT Grid -->
+    <div id="nft-grid" class="nft-grid" style="display: none;"></div>
+  </div>
+
+  <!-- Mint Modal -->
+  <div id="mint-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeMintModal()">&times;</button>
+
+      <div id="modal-body">
+        <!-- Step 1: Confirm -->
+        <div id="step-confirm" class="modal-step active">
+          <h2>Mint NFT</h2>
+          <div class="nft-preview">
+            <img id="modal-image" src="" alt="NFT">
+            <div class="nft-details">
+              <h3 id="modal-title"></h3>
+              <p id="modal-description"></p>
+              <p class="price-tag">Price: <strong id="modal-price"></strong> SOL</p>
+            </div>
+          </div>
+          <button id="confirm-mint-btn" class="btn-primary" onclick="startMinting()">
+            Confirm & Pay
+          </button>
+        </div>
+
+        <!-- Step 2: Payment -->
+        <div id="step-payment" class="modal-step">
+          <h2>Sending Payment</h2>
+          <div class="progress-indicator">
+            <div class="spinner"></div>
+            <p>Please approve the transaction in your wallet...</p>
+          </div>
+        </div>
+
+        <!-- Step 3: Minting -->
+        <div id="step-minting" class="modal-step">
+          <h2>Minting NFT</h2>
+          <div class="progress-indicator">
+            <div class="spinner"></div>
+            <p>Creating your NFT on Solana...</p>
+            <p class="progress-note">This may take 30-60 seconds</p>
+          </div>
+        </div>
+
+        <!-- Step 4: Success -->
+        <div id="step-success" class="modal-step">
+          <h2>Success!</h2>
+          <div class="success-content">
+            <div class="success-icon"></div>
+            <p>Your NFT has been minted successfully!</p>
+            <div class="success-details">
+              <p><strong>NFT Address:</strong></p>
+              <p id="success-mint-address" class="address-text"></p>
+              <div class="success-actions">
+                <a id="success-explorer-link" href="#" target="_blank" class="btn-secondary">
+                  View on Explorer
+                </a>
+                <button onclick="closeMintModal()" class="btn-primary">
+                  Done
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5: Error -->
+        <div id="step-error" class="modal-step">
+          <h2>Error</h2>
+          <div class="error-content">
+            <div class="error-icon"></div>
+            <p id="error-text">Something went wrong</p>
+            <button onclick="closeMintModal()" class="btn-secondary">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="notification-toast" class="notification-toast" style="display: none;"></div>
+
+  <!-- Solana Web3.js -->
+  <script src="https://unpkg.com/@solana/web3.js@1.95.0/lib/index.iife.min.js"></script>
+
+  <!-- Store JavaScript -->
+  <script src="store.js"></script>
+</body>
+</html>
