@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Dogame - Artist & Host of Drawn to the Mic</title>
+    <meta name="description" content="Artist & Host of Drawn to the Mic">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="@Dogame">
+    <meta property="og:description" content="Artist & Host of Drawn to the Mic">
+    <meta property="og:image" content="art/image0.jpeg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="art/image0.jpeg">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-95K6LY8JD8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-95K6LY8JD8');
+    </script>
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <img src="art/image0.jpeg" alt="@Dogame" class="avatar">
+            <div class="profile-info">
+                <h1 class="name">@Dogame</h1>
+                <p class="tagline">Artist & Host of Drawn to the Mic</p>
+            </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="links-section">
+            
+            <a href="/main/" class="link-button" target="_self" rel="noopener noreferrer">
+                
+                <i data-lucide="palette"></i>
+                
+                <span>Portfolio</span>
+            </a>
+            
+            <a href="https://twitter.com/Dogame_" class="link-button" target="_blank" rel="noopener noreferrer">
+                
+                <i data-lucide="twitter"></i>
+                
+                <span>Twitter</span>
+            </a>
+            
+            <a href="https://www.instagram.com/Dogame__" class="link-button" target="_blank" rel="noopener noreferrer">
+                
+                <i data-lucide="instagram"></i>
+                
+                <span>Instagram</span>
+            </a>
+            
+            <a href="https://drip.haus/dogame" class="link-button" target="_blank" rel="noopener noreferrer">
+                
+                <i data-lucide="droplet"></i>
+                
+                <span>Drip Haus</span>
+            </a>
+            
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="socials-section">
+            <div class="social-links">
+                
+                <a href="https://www.instagram.com/Dogame__" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i data-lucide="instagram"></i>
+                </a>
+                
+                <a href="https://twitter.com/Dogame_" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <i data-lucide="twitter"></i>
+                </a>
+                
+                <a href="https://drip.haus/dogame" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Drip Haus">
+                    <i data-lucide="droplet"></i>
+                </a>
+                
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer-section">
+            <p class="footer-text">Thanks for stopping by!
+</p>
+            <p class="copyright">© 2025 Dogame.
+</p>
+        </div>
+    </div>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+
+    <!-- Weekday Detector for Driphaus Badge -->
+    <script>
+    (function() {
+      'use strict';
+      
+      function isWeekday() {
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        return dayOfWeek >= 1 && dayOfWeek <= 5;
+      }
+      
+      function updateWeekdayClass() {
+        const body = document.body;
+        
+        if (isWeekday()) {
+          body.classList.add('weekday');
+          console.log('✓ Weekday detected - SNAPSHOT ACTIVE badge enabled');
+        } else {
+          body.classList.remove('weekday');
+          console.log('✓ Weekend detected - SNAPSHOT ACTIVE badge disabled');
+        }
+      }
+      
+      updateWeekdayClass();
+      
+      setInterval(function() {
+        const now = new Date();
+        if (now.getHours() === 0 && now.getMinutes() === 0) {
+          updateWeekdayClass();
+        }
+      }, 60000);
+      
+    })();
+    </script>
+</body>
+</html>

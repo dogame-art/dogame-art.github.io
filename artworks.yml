@@ -1,0 +1,455 @@
+# Artwork Page Generation Settings
+# Set to true to enable automatic artwork page generation
+generate_artworks: true
+
+# Site info for artwork pages
+site:
+  name: "Dogame's Art"
+  base_url: "https://dogame.art"
+
+# Artwork list (only used when generate_artworks is true)
+# published options:
+#   true  = Creates slug page with "AVAILABLE" badge (clickable)
+#   false = Shows "COMING SOON" badge (not clickable, no page)
+#   null or omit = No badge, just showcase (not clickable, no page)
+artworks:
+  - slug: "WindowShopping"
+    title: "Window Shopping"
+    image: "art/image9.jpeg"
+    description: "Sometimes it is nice to look at it before you buy it."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame/collectible/2025-art-window-shopping-691402bf"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: true
+    
+  - slug: "PortalOverflow"
+    title: "Portal Overflow"
+    image: "art/PortalOverflow.jpeg"
+    description: "Sometimes the unknown is meant to stay that way"
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/studio/a8f18b21-b8fd-4df5-bb6f-1d58d324c195/collectibles/b932c0fe-bcbe-4a50-a299-c4479d26ebc2/deployments"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: true
+
+  - slug: "FlowerPower"
+    title: "Flower Power"
+    image: "art/FlowerPower.jpg"
+    description: "Power from beauty "
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame/collectible/2025-art-flower-power-0019e4ee"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: true
+    
+  - slug: "ChickenHead"
+    title: "Chicken Head"
+    image: "art/ChickenHead.jpeg"
+    description: "A unique vision waiting to be revealed."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "DeskWork"
+    title: "Desk Work"
+    image: "art/DeskWork.jpeg"
+    description: "Where creativity meets dedication."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "LonesomeGiant"
+    title: "Lonesome Giant"
+    image: "art/LonesomeGiant.jpeg"
+    description: "Standing tall in solitude."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "RainofArrows"
+    title: "Rain of Arrows"
+    image: "art/RainofArrows.jpeg"
+    description: "A storm of precision and power."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "UberSummon"
+    title: "Uber Summon"
+    image: "art/UberSummon.jpeg"
+    description: "Calling forth something extraordinary."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "Chicken"
+    title: "Chicken"
+    image: "art/chicken.jpeg"
+    description: "A feathered friend with character."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  # NEW ARTWORKS - 35 additions
+  - slug: "AngryFingers"
+    title: "Angry Fingers"
+    image: "art/AngryFingers.jpeg"
+    description: "When hands speak louder than words."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "BattleBegins"
+    title: "Battle Begins"
+    image: "art/BattleBegins.jpeg"
+    description: "The moment before everything changes."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "BlastOff"
+    title: "Blast Off"
+    image: "art/BlastOff.jpeg"
+    description: "Launching into the unknown."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "BlindLight"
+    title: "Blind Light"
+    image: "art/BlindLight.jpeg"
+    description: "Illumination that obscures."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "CarefulWhatYouWishFor"
+    title: "Careful What You Wish For"
+    image: "art/CarefulWhatYouWishFor.jpeg"
+    description: "Desires fulfilled come with consequences."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "CharacterDesign00"
+    title: "Character Design 00"
+    image: "art/CharacterDesign00.jpeg"
+    description: "A personality taking shape."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "Cig00"
+    title: "Cig 00"
+    image: "art/Cig00.jpeg"
+    description: "A moment of contemplation."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "Cig01"
+    title: "Cig 01"
+    image: "art/Cig01.jpeg"
+    description: "Another pause in time."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "DisappearingAct"
+    title: "Disappearing Act"
+    image: "art/DisappearingAct.jpeg"
+    description: "Here one moment, gone the next."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "ForLove"
+    title: "For Love"
+    image: "art/ForLove.jpeg"
+    description: "All that matters in the end."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "GM"
+    title: "GM"
+    image: "art/GM.jpeg"
+    description: "Good morning to the community."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "HomeSweetHome"
+    title: "Home Sweet Home"
+    image: "art/HomeSweetHome.jpeg"
+    description: "Where the heart finds peace."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "IslandLife"
+    title: "Island Life"
+    image: "art/IslandLife.jpeg"
+    description: "Paradise in isolation."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "LiveMid"
+    title: "Live Mid"
+    image: "art/LiveMid.jpeg"
+    description: "Finding balance in the middle."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "LoneTower"
+    title: "Lone Tower"
+    image: "art/LoneTower.jpeg"
+    description: "A sentinel standing watch."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "MasksOn"
+    title: "Masks On"
+    image: "art/MasksOn.jpeg"
+    description: "The faces we choose to show."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "MoonPortal"
+    title: "Moon Portal"
+    image: "art/MoonPortal.jpeg"
+    description: "A gateway beneath the lunar glow."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "Neigh"
+    title: "Neigh"
+    image: "art/Neigh.jpeg"
+    description: "The call of the wild spirit."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "Overboard"
+    title: "Overboard"
+    image: "art/Overboard.jpeg"
+    description: "Lost at sea, adrift in thought."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "PortalApprentice"
+    title: "Portal Apprentice"
+    image: "art/PortalApprentice.jpeg"
+    description: "Learning the ways of the gateway."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "PortalOffset"
+    title: "Portal Offset"
+    image: "art/PortalOffset.jpeg"
+    description: "When dimensions don't align."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "SeekMore"
+    title: "Seek More"
+    image: "art/SeekMore.jpeg"
+    description: "The journey never ends."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "SmokeBreak"
+    title: "Smoke Break"
+    image: "art/SmokeBreak.jpeg"
+    description: "A brief escape from reality."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "StarResting"
+    title: "Star Resting"
+    image: "art/StarResting.jpeg"
+    description: "Even stars need to pause."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "StreetHand"
+    title: "Street Hand"
+    image: "art/StreetHand.jpeg"
+    description: "Urban gesture, urban life."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "SummerDays"
+    title: "Summer Days"
+    image: "art/SummerDays.jpeg"
+    description: "Golden moments under the sun."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "SurrealVibes"
+    title: "Surreal Vibes"
+    image: "art/SurrealVibes.jpeg"
+    description: "Reality bends and shifts."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "TheFinger"
+    title: "The Finger"
+    image: "art/TheFinger.jpeg"
+    description: "A gesture that says it all."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "TheMegalith"
+    title: "The Megalith"
+    image: "art/TheMegalith.jpeg"
+    description: "Ancient stone, timeless presence."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "TheNarrows"
+    title: "The Narrows"
+    image: "art/TheNarrows.jpeg"
+    description: "A passage between worlds."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "ToothAche"
+    title: "Tooth Ache"
+    image: "art/ToothAche.jpeg"
+    description: "Pain that demands attention."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "TreePortal"
+    title: "Tree Portal"
+    image: "art/TreePortal.jpeg"
+    description: "Nature's gateway to elsewhere."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "TroubledTimes"
+    title: "Troubled Times"
+    image: "art/TroubledTimes.jpeg"
+    description: "Navigating through the storm."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "ValleyCliffs"
+    title: "Valley Cliffs"
+    image: "art/ValleyCliffs.jpeg"
+    description: "Majesty carved by time."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
+    
+  - slug: "WoodRock"
+    title: "Wood Rock"
+    image: "art/WoodRock.jpeg"
+    description: "Where nature meets stone."
+    alt_text: "Artwork by Dogame"
+    drip_haus_url: "https://drip.haus/dogame"
+    solscan_url: "https://solscan.io"
+    twitter_share_url: "https://twitter.com/dogame_"
+    published: null
