@@ -1,24 +1,20 @@
-# Dogame's Links
-A personal link hub showcasing my art, podcast, and social media presence.
+# dogame.art
 
-## About
-- Artist  
-- Host of *Drawn to the Mic* podcast  
-- Motto: Onward and Upward  
+Personal site for Dogame — artist and host of Drawn to the Mic.
 
-## Links
-- [Instagram](https://www.instagram.com/Dogame__)  
-- [Twitter](https://twitter.com/Dogame_)  
-- [Drip Haus](https://drip.haus/dogame)  
+## Pages
+- **/** — Link tree landing page
+- **/about/** — About the artist + Drawn to the Mic
+- **/gallery/** — Art gallery loaded from `artworks.yml`
 
-## Features
-- Custom artwork showcase pages with clean URLs
-- NFC tag integration for physical artwork authentication
-- Automated artwork page generation
-- Mobile-responsive design
-- Custom domain support
+## Adding Artwork
+Edit `artworks.yml`, add an entry, push to `main`. The gallery updates automatically.
 
----
+## Tech
+Static HTML/CSS/JS. No build step. Hosted on GitHub Pages with GitHub Actions deploy.
 
-### License
-This project is based on [linkyee](https://github.com/ZhgChgLi/linkyee) by [ZhgChgLi](https://github.com/ZhgChgLi) and is licensed under the [MIT License](./LICENSE).
+## NFC Deep Links
+Physical NFC tags link to `https://dogame.art/gallery/#Slug` — the gallery scrolls to and highlights that piece.
+
+## License
+[MIT License](./LICENSE)
