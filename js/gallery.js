@@ -102,10 +102,10 @@
   // ---- NFC Deep Link ----
   function handleDeepLink() {
     const slug = location.hash.replace('#', '');
-    if (!slug) return;
+    if (!slug || !/^[a-zA-Z0-9_-]+$/.test(slug)) return;
 
     const card = document.getElementById(slug);
-    if (!card) return;
+    if (!card || !card.classList.contains('artwork-card')) return;
 
     // Scroll to the card
     setTimeout(() => {
