@@ -56,17 +56,17 @@
       flex: 1 1 auto;
       min-height: 0;
       width: 100%;
-      background: transparent;
-      border: none;
-      border-radius: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
+      position: relative;
     }
-    /* Crop Cal.com footer — let the native widget use all vertical space */
     #cal-inline iframe {
       display: block;
       width: 100% !important;
-      height: calc(100% + 60px) !important;
-      margin-bottom: -60px;
+      height: 100% !important;
+      border: 0;
     }
     .dttm-bottom {
       flex: 0 0 auto;
