@@ -13,18 +13,10 @@
   <link rel="stylesheet" href="/css/styles.css">
 
   <style>
-    html, body {
-      height: 100%;
-      overflow: hidden;
-    }
     .dttm-wrap {
-      display: flex;
-      flex-direction: column;
-      height: 100dvh;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 10px 16px;
-      gap: 10px;
+      padding: 14px 16px 24px;
       box-sizing: border-box;
     }
     .dttm-top {
@@ -32,7 +24,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      flex: 0 0 auto;
+      margin-bottom: 14px;
     }
     .dttm-top .back-link {
       margin: 0;
@@ -53,26 +45,14 @@
       display: none;
     }
     #cal-inline {
-      flex: 1 1 auto;
-      min-height: 0;
       width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      position: relative;
-    }
-    #cal-inline iframe {
-      display: block;
-      width: 100% !important;
-      height: 100% !important;
-      border: 0;
+      background: transparent;
     }
     .dttm-bottom {
-      flex: 0 0 auto;
       text-align: center;
       color: var(--text-muted);
       font-size: 12px;
+      margin-top: 14px;
       padding-bottom: env(safe-area-inset-bottom, 0);
     }
     .dttm-bottom a {
@@ -80,7 +60,7 @@
     }
     @media (min-width: 700px) {
       .dttm-top .tagline { display: inline; }
-      .dttm-wrap { padding: 16px 24px; gap: 14px; }
+      .dttm-wrap { padding: 20px 24px 28px; }
     }
   </style>
 
