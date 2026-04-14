@@ -62,7 +62,13 @@ export default async function handler(request) {
     body = JSON.parse(rawBody || '{}');
   } catch (err) {
     console.error('[cal-webhook] json parse failed', err.message);
-    return json({ error: 'Invalid JSON' }, 400);
+    return json({
+      error: 'Invalid JSON',
+      debug_len: rawBody.length,
+      debug_first64: rawBody.slice(0, 64),
+      debug_last32: rawBody.slice(-32),
+      debug_parse_err: err.message,
+    }, 400);
   }
 
   try {
