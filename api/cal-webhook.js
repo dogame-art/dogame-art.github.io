@@ -68,6 +68,12 @@ export default async function handler(request) {
   try {
     const { triggerEvent, payload } = body;
 
+    const WHITELIST = new Set(['BOOKING_CREATED', 'BOOKING_RESCHEDULED', 'BOOKING_CANCELLED']);
+    if (!WHITELIST.has(triggerEvent)) {
+      console.log('[cal-webhook] skipping event', triggerEvent);
+      return json({ ok: true, skipped: triggerEvent }, 200);
+    }
+
     const title = payload?.title || 'Drawn to the Mic Interview';
     const startTime = payload?.startTime ? new Date(payload.startTime) : null;
     const attendee = payload?.attendees?.[0] || {};
