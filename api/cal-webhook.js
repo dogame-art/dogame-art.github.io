@@ -1,12 +1,6 @@
 import crypto from 'node:crypto';
 
-export const config = { api: { bodyParser: false } };
-
-async function readRawBody(req) {
-  const chunks = [];
-  for await (const chunk of req) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
-  return Buffer.concat(chunks);
-}
+export const config = { runtime: 'nodejs' };
 
 function verifySignature(secret, rawBody, provided) {
   if (!provided) return false;
@@ -18,9 +12,16 @@ function verifySignature(secret, rawBody, provided) {
   return crypto.timingSafeEqual(a, b);
 }
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+function escapeMd(s) {
+  return String(s).replace(/([_*`\[\]])/g, '\\$1');
+}
+
+export default async function handler(request) {
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -29,31 +30,27 @@ export default async function handler(req, res) {
 
   if (!token || !chatId) {
     console.error('[cal-webhook] TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID not set');
-    return res.status(500).json({ error: 'Server misconfigured' });
+    return json({ error: 'Server misconfigured' }, 500);
   }
 
-  let rawBody;
-  try {
-    rawBody = await readRawBody(req);
-  } catch (err) {
-    console.error('[cal-webhook] body read failed', err.message);
-    return res.status(400).json({ error: 'Bad request' });
-  }
+  const rawBody = await request.text();
 
   if (secret) {
-    const provided = req.headers['x-cal-signature-256'] || req.headers['x-webhook-signature'] || req.headers['x-hub-signature-256'];
+    const provided = request.headers.get('x-cal-signature-256')
+      || request.headers.get('x-webhook-signature')
+      || request.headers.get('x-hub-signature-256');
     if (!verifySignature(secret, rawBody, provided)) {
       console.warn('[cal-webhook] signature mismatch');
-      return res.status(401).json({ error: 'Unauthorized' });
+      return json({ error: 'Unauthorized' }, 401);
     }
   }
 
   let body;
   try {
-    body = JSON.parse(rawBody.toString('utf8') || '{}');
+    body = JSON.parse(rawBody || '{}');
   } catch (err) {
     console.error('[cal-webhook] json parse failed', err.message);
-    return res.status(400).json({ error: 'Invalid JSON' });
+    return json({ error: 'Invalid JSON' }, 400);
   }
 
   try {
@@ -82,12 +79,12 @@ export default async function handler(req, res) {
     const lines = [
       `*${eventLabel}*`,
       '',
-      `*Guest:* ${escape(name)}${handle ? ` (@${escape(handle.replace(/^@/, ''))})` : ''}`,
-      email ? `*Email:* ${escape(email)}` : null,
-      `*When:* ${escape(when)}`,
-      `*Event:* ${escape(title)}`,
-      focus ? `*Focus:* ${escape(focus)}` : null,
-      topic ? `*Topic:* ${escape(topic)}` : null,
+      `*Guest:* ${escapeMd(name)}${handle ? ` (@${escapeMd(String(handle).replace(/^@/, ''))})` : ''}`,
+      email ? `*Email:* ${escapeMd(email)}` : null,
+      `*When:* ${escapeMd(when)}`,
+      `*Event:* ${escapeMd(title)}`,
+      focus ? `*Focus:* ${escapeMd(focus)}` : null,
+      topic ? `*Topic:* ${escapeMd(topic)}` : null,
     ].filter(Boolean);
 
     const text = lines.join('\n');
@@ -106,16 +103,19 @@ export default async function handler(req, res) {
     if (!tgRes.ok) {
       const err = await tgRes.text();
       console.error('[cal-webhook] telegram error', err);
-      return res.status(502).json({ error: 'Telegram delivery failed' });
+      return json({ error: 'Telegram delivery failed' }, 502);
     }
 
-    return res.status(200).json({ ok: true });
+    return json({ ok: true }, 200);
   } catch (err) {
     console.error('[cal-webhook] handler error', err.message);
-    return res.status(500).json({ error: 'Internal error' });
+    return json({ error: 'Internal error' }, 500);
   }
 }
 
-function escape(s) {
-  return String(s).replace(/([_*`\[\]])/g, '\\$1');
+function json(obj, status) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
