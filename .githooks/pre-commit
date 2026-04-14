@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# Pre-commit hook — blocks commits containing secrets.
+# Reads patterns from .githooks/.blocklist (gitignored).
+# Enable once:  git config core.hooksPath .githooks
+
+set -e
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+BLOCKLIST="$REPO_ROOT/.githooks/.blocklist"
+
+# 1. Block staged .env files
+if git diff --cached --name-only | grep -E '(^|/)\.env($|\.)' | grep -v '\.env\.example$'; then
+  echo "❌ Refusing to commit .env file. Add to .gitignore or unstage."
+  exit 1
+fi
+
+# 2. Check staged diff against blocklist patterns
+if [ -f "$BLOCKLIST" ]; then
+  STAGED=$(git diff --cached -U0)
+  while IFS= read -r pattern; do
+    [ -z "$pattern" ] && continue
+    [[ "$pattern" =~ ^# ]] && continue
+    if echo "$STAGED" | grep -E "$pattern" > /dev/null; then
+      echo "❌ Blocked: staged diff matches pattern in .blocklist"
+      echo "   Pattern hit: (hidden — check your changes against .blocklist)"
+      exit 1
+    fi
+  done < "$BLOCKLIST"
+fi
+
+# 3. Run gitleaks if available
+if command -v gitleaks > /dev/null 2>&1; then
+  if [ -f "$REPO_ROOT/.gitleaks.toml" ]; then
+    gitleaks protect --staged --config "$REPO_ROOT/.gitleaks.toml" --redact --log-level error || {
+      echo "❌ gitleaks found secrets in staged changes."
+      exit 1
+    }
+  else
+    gitleaks protect --staged --redact --log-level error || {
+      echo "❌ gitleaks found secrets in staged changes."
+      exit 1
+    }
+  fi
+fi
+
+exit 0

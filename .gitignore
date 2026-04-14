@@ -1,4 +1,26 @@
+# OS
 .DS_Store
 Thumbs.db
-.env
+
+# Deps
 node_modules/
+
+# Env — NEVER commit real values
+.env
+.env.*
+!.env.example
+
+# Secrets
+secrets/
+keys/
+*.pem
+*.key
+credentials.*
+*-keypair.json
+
+# Security tooling (actual patterns live here, not in repo)
+.gitleaks.toml
+.githooks/.blocklist
+
+# Vercel local
+.vercel
