@@ -1,3 +1,23 @@
+import crypto from 'node:crypto';
+
+export const config = { api: { bodyParser: false } };
+
+async function readRawBody(req) {
+  const chunks = [];
+  for await (const chunk of req) chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  return Buffer.concat(chunks);
+}
+
+function verifySignature(secret, rawBody, provided) {
+  if (!provided) return false;
+  const expected = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
+  const a = Buffer.from(expected, 'utf8');
+  const clean = String(provided).replace(/^sha256=/i, '').trim();
+  const b = Buffer.from(clean, 'utf8');
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(a, b);
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -12,16 +32,32 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Server misconfigured' });
   }
 
+  let rawBody;
+  try {
+    rawBody = await readRawBody(req);
+  } catch (err) {
+    console.error('[cal-webhook] body read failed', err.message);
+    return res.status(400).json({ error: 'Bad request' });
+  }
+
   if (secret) {
-    const provided = req.headers['x-cal-signature-256'] || req.headers['x-webhook-secret'];
-    if (provided !== secret) {
+    const provided = req.headers['x-cal-signature-256'] || req.headers['x-webhook-signature'] || req.headers['x-hub-signature-256'];
+    if (!verifySignature(secret, rawBody, provided)) {
       console.warn('[cal-webhook] signature mismatch');
       return res.status(401).json({ error: 'Unauthorized' });
     }
   }
 
+  let body;
   try {
-    const { triggerEvent, payload } = req.body || {};
+    body = JSON.parse(rawBody.toString('utf8') || '{}');
+  } catch (err) {
+    console.error('[cal-webhook] json parse failed', err.message);
+    return res.status(400).json({ error: 'Invalid JSON' });
+  }
+
+  try {
+    const { triggerEvent, payload } = body;
 
     const title = payload?.title || 'Drawn to the Mic Interview';
     const startTime = payload?.startTime ? new Date(payload.startTime) : null;
