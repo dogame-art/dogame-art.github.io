@@ -1,27 +1,38 @@
-import crypto from 'node:crypto';
+export const config = { runtime: 'edge' };
 
-export const config = { runtime: 'nodejs' };
-
-function verifySignature(secret, rawBody, provided) {
+async function verifySignature(secret, rawBody, provided) {
   if (!provided) return false;
-  const expected = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
-  const a = Buffer.from(expected, 'utf8');
   const clean = String(provided).replace(/^sha256=/i, '').trim();
-  const b = Buffer.from(clean, 'utf8');
-  if (a.length !== b.length) return false;
-  return crypto.timingSafeEqual(a, b);
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    'raw',
+    enc.encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  const mac = await crypto.subtle.sign('HMAC', key, enc.encode(rawBody));
+  const expected = [...new Uint8Array(mac)].map(b => b.toString(16).padStart(2, '0')).join('');
+  if (expected.length !== clean.length) return false;
+  let diff = 0;
+  for (let i = 0; i < expected.length; i++) diff |= expected.charCodeAt(i) ^ clean.charCodeAt(i);
+  return diff === 0;
 }
 
 function escapeMd(s) {
   return String(s).replace(/([_*`\[\]])/g, '\\$1');
 }
 
+function json(obj, status) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
+
 export default async function handler(request) {
   if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-      status: 405,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return json({ error: 'Method not allowed' }, 405);
   }
 
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -39,7 +50,8 @@ export default async function handler(request) {
     const provided = request.headers.get('x-cal-signature-256')
       || request.headers.get('x-webhook-signature')
       || request.headers.get('x-hub-signature-256');
-    if (!verifySignature(secret, rawBody, provided)) {
+    const ok = await verifySignature(secret, rawBody, provided);
+    if (!ok) {
       console.warn('[cal-webhook] signature mismatch');
       return json({ error: 'Unauthorized' }, 401);
     }
@@ -111,11 +123,4 @@ export default async function handler(request) {
     console.error('[cal-webhook] handler error', err.message);
     return json({ error: 'Internal error' }, 500);
   }
-}
-
-function json(obj, status) {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: { 'Content-Type': 'application/json' },
-  });
 }
